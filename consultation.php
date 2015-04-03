@@ -2,7 +2,7 @@
 session_start();
 if(isset($_POST['ok'])) {
 		$message="<p>Paramétrage du filtre :</p><ul><li>Tout le stock</li> ";
-		$requete="SELECT * FROM journal,article WHERE  journal.reference=article.reference";
+		$requete="SELECT * FROM journal,article,categorie WHERE  journal.reference=article.reference AND article.id_categorie=categorie=id_categorie";
 		//$requeteprixtotal="SELECT SUM(prixttc) AS prix_total FROM journal,article WHERE  journal.reference=article.reference";
 		//$requetequantitetotal="SELECT SUM(quantite) AS quantite_total FROM journal,article WHERE  journal.reference=article.reference";
 		// compléter la requete
@@ -97,7 +97,7 @@ if(isset($_POST['ok'])) {
 		echo "<p>Etat du stock à la date du : ".$maintenant."</p>";
 		echo "<p>$message</p>";
 		echo "<table border width=80% cellpadding=6 >";
-		echo "<tr><td align='center'>ID</td><td align='left'>Référence</td><td align='left'>Désignation</td><td align='right'>Prix unitaire HT
+		echo "<tr><td align='center'>ID</td><td align='left'>Catégorie</td><td align='left'>Référence</td><td align='left'>Désignation</td><td align='right'>Prix unitaire HT
 			</td><td align='right'>Prix unitaire TTC</td><td align='right'>Quantité</td><td align='right'>Prix total TTC
 			</td><td align='right'>Date achat</td><td align='right'>Créateur</td><td align='right'>Date/heure création</td></tr>";
 		while($ligne=mysqli_fetch_assoc($result)) {
@@ -116,12 +116,13 @@ if(isset($_POST['ok'])) {
 			$prixtotalttc=$prixttc*$quantite;
 			$prixtotalttc_justif=sprintf("%10.2f", $prixtotalttc);
 			$designation=$ligne['designation'];
+			$categorie = $ligne ['nom'];
 			// calcul des totaux
 			$totalqte += $ligne['quantite'];
 			$totalprixht += $ligne['prixht'];
 			$totalprixttc += $ligne['prixttc'];
 			// préparation du tableau (ligne d'entête)			
-			echo "<tr><td align='center'>$id</td><td align='left'>$reference</td><td align='left'>$designation</td><td align='right'>$prixht_justif
+			echo "<tr><td align='center'>$id</td><td align='left'>$categorie</td><td align='left'>$reference</td><td align='left'>$designation</td><td align='right'>$prixht_justif
 				</td><td align='right'>$prixttc_justif</td><td align='right'>$quantite</td><td align='right'>$prixtotalttc_justif
 				</td><td align='right'>$dateha</td><td align='right'>$createur</td><td align='right'>$datecreation</td></tr>"; 		
 		}
