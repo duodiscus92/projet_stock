@@ -2,7 +2,7 @@
 session_start();
 if(isset($_POST['ok'])) {
 		$message="<p>Paramétrage du filtre :</p><ul><li>Tout le stock</li> ";
-		$requete="SELECT * FROM journal,article,categorie WHERE  journal.reference=article.reference AND article.id_categorie=categorie=id_categorie";
+		$requete="SELECT * FROM journal,article,categorie WHERE  journal.reference=article.reference AND article.id_categorie=categorie.id_categorie";
 		//$requeteprixtotal="SELECT SUM(prixttc) AS prix_total FROM journal,article WHERE  journal.reference=article.reference";
 		//$requetequantitetotal="SELECT SUM(quantite) AS quantite_total FROM journal,article WHERE  journal.reference=article.reference";
 		// compléter la requete
