@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="EN" dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/xml; charset=iso5589-1" />
+    <title>regex.html</title>
+    <link rel = "stylesheet"
+          type = "text/css"
+          href = "regex.css" />
+          
+    <script type = "text/javascript">
+      //<![CDATA[
+      // from regex.html
+      function testRegex(){
+        var regex = document.getElementById("txtRegex").value;
+        var working = document.getElementById("txtWork").value;
+        var output = document.getElementById("output");
+        
+        if (working.match(regex)){
+          output.style.backgroundColor = "#AAFFAA";
+          output.innerHTML = "C'est tout à fait correct !";
+        } else {
+          output.style.backgroundColor = "#FFAAAA";
+          output.innerHTML = "Not a match";
+        } // end if
+      } // end function
+      
+      //]]>
+    </script>
+  </head>
+
+  <body>
+    <h1>Testeur d'expressions régulières</h1>
+    <form action = "">
+      <fieldset>
+        <label>Expression régulière</label>
+        <input type = "text"
+               id = "txtRegex" />
+        
+        <label>Texte à analyser</label>
+        <input type = "text"
+               id = "txtWork" />
+        <button type = "button"
+                onclick = "testRegex()">
+          Cliquez pour vérifier !
+        </button>
+        <p id = "output">
+          exemple de sortie
+        </p>       
+      </fieldset>
+    </form>
+  </body>
+</html>

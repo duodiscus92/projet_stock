@@ -1,0 +1,11 @@
+h1
+{
+	color: blue;
+}
+
+label
+{
+    display: block; /* La balise devient de type block. */
+    width: 150px;
+    float:left;
+}

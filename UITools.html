@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="EN" dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="content-type" content="text/xml; charset=iso5589-1" />
+  <!-- <link rel = "stylesheet"
+        type = "text/css"
+        href = "jquery-ui-1.7.2.custom.css" /> -->
+        
+  <!-- <style type = "text/css">
+    h1 {
+      text-align: center;
+    }
+    
+    #selectable .ui-selecting {
+      background-color: gray;
+    } 
+    #selectable .ui-selected {
+      background-color: black;
+      color: white;
+    } 
+  </style> -->
+  
+        
+  <script type = "text/javascript"
+          src = "jquery-1.3.2.min.js"></script>
+  <script type = "text/javascript"
+          src = "jquery-ui-1.7.2.custom.min.js"></script>
+  <script type = "text/javascript">    
+    //<![CDATA[
+
+    $(init);
+
+    function init(){
+      $("h1").addClass("ui-widget-header");
+      
+      $("#tabs").tabs();
+      $("#datePicker").datepicker();
+      
+      $("#slider").slider()
+      .bind("slide", reportSlider);
+      
+      $("#selectable").selectable();
+      
+      $("#sortable").sortable();
+      
+      $("#dialog").dialog();
+      
+      //initially close dialog
+      $("#dialog").dialog("close");
+      
+    } // end init
+    
+    function reportSlider(){
+      var sliderVal = $("#slider").slider("value");
+      $("#slideOutput").html(sliderVal);
+    } // end reportSlider
+    
+    function openDialog(){
+      $("#dialog").dialog("open");
+    } // end openDialog
+    
+    function closeDialog(){
+      $("#dialog").dialog("close");
+    } // end closeDialog
+    //]]>
+    </script>
+  
+  <title>UItools.html</title>
+</head>
+<body>
+ <h1>Outils UI</h1>
+<div id = "tabs">
+  <ul>
+    <li><a href = "#datePickerTab">date picker</a></li>
+    <li><a href = "#sliderTab">slider</a></li>
+    <li><a href = "#selectableTab">sélectionnable</a></li>
+    <li><a href = "#sortableTab">triable</a></li>
+    <li><a href = "#dialogTab">boîte de dialogue</a></li>
+  </ul>
+
+    
+    <div id = "datePickerTab">
+      <h2>date picker</h2>
+      <input type = "text"
+             id = "datePicker" />
+    </div>
+
+    <div id = "sliderTab">
+      <h2>slider</h2>
+      <div id = "slider"></div>
+      <div id = "slideOutput">0</div>
+    </div>
+
+    <div id = "selectableTab">
+      <h2>sélectionnable</h2>
+      <ul id = "selectable">
+        <li>alpha</li>
+        <li>beta</li>
+        <li>gamma</li>
+        <li>delta</li>
+      </ul>
+    </div>
+
+    <div id = "sortableTab">
+      <h2>triable</h2>
+      <ul id = "sortable">
+        <li>alpha</li>
+        <li>beta</li>
+        <li>gamma</li>
+        <li>delta</li>
+      </ul>
+    </div>
+
+    <div id = "dialogTab">
+      <h2>dialog</h2>
+		<div id = "dialog"
+			title = "Ma boîte de dialogue">
+			<p>
+			Vous disposez d’une boîte de dialogue
+			personnalisée, déplaçable et redimensionnable, assortie
+			au thème de la page.
+			</p>
+		</div>
+  
+      <input type = "button"
+             value = "Ouverture boîte de dialogue"
+             onclick = "openDialog()" />
+      
+      <input type = "button"
+             value = "Fermeture boîte de dialogue"
+             onclick = "closeDialog()" />
+      
+		</div>
+    
+  </div>
+</body>
+</html>
