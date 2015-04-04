@@ -106,7 +106,7 @@ if(isset($_POST['ok'])) {
 			$createur=$ligne['createur_mouvement'];
 			$dateha=$ligne['dateha'];
 			$createur=$ligne['createur_mouvement'];
-			$datecreation=$ligne['date_creation'];
+			$datecreation=$ligne['journal.date_creation'];
 			$reference=$ligne['reference'];
 			$quantite=$ligne['quantite'];
 			$prixht=$ligne['prixht'];
