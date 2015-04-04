@@ -15,7 +15,7 @@
 <html>
 	<head>
 	    <meta http-equiv="content-type" content="text/html" charset="utf-8" />
-        <title>Voir références vides</title>
+        <title>Voir références</title>
 
         <link rel="stylesheet" href="style.css" />
         
@@ -37,10 +37,19 @@
 	    <!--<form action="<?php echo($_SERVER['PHP_SELF']); ?>" method="post" id="chg"> -->
 	    <form action="listerefvide.php" method="post" id="chg">
             <label>Tout :</label>
-	    	<td>Toutes les références vides</td></br>
+	    	<td>Toutes les références</td></br>
             <p> </p>
+
 			<fieldset>
-            <label for="etou1">Filtre 1 :</label>
+            <label for="etou">Références vides :</label>
+            <input type="radio" name="etou" value="et" >Uniquement
+            <input type="radio" name="etou" value="ou" >Exclure
+            <input type="radio" name="etou" value="ignorer" checked="checked" >Ignorer</br>
+        	</fieldset>
+            <p> </p>
+
+			<fieldset>
+            <label for="etou1">Filtre 2 :</label>
             <input type="radio" name="etou1" value="et" >Uniquement
             <input type="radio" name="etou1" value="ou" >Exclure
             <input type="radio" name="etou1" value="ignorer" checked="checked" >Ignorer</br>
@@ -67,7 +76,7 @@
 
             <p> </p>
 			<fieldset>
-            <label for="etou2">Filtre 2 :</label>
+            <label for="etou2">Filtre 3 :</label>
             <input type="radio" id="etou2" name="etou2" value="et" />Uniquement
             <input type="radio" id="etou2" name="etou2" value="ou" />Exclure
             <input type="radio" id="etou2" name="etou2" value="ignorer" checked="checked" />Ignorer</br>
