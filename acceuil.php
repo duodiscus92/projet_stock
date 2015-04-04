@@ -34,6 +34,7 @@
 	        <a href="deposer.php" onClick=verifStatut(3)>Déposer dans le stock</a><br />
 	        <a href="prelever.php" onClick=verifStatut(3)>Prélever dans le stock</a><br />
 	        <a href="creerref.php" onClick=verifStatut(4)>Créer une nouvelle réference</a><br />
+	        <a href="refvide.php" onClick=verifStatut(2)>Lister les références sans stock</a><br />
 	        <a href="notice.php" onClick=verifStatut(2)>Notice d'utilisation</a><br />
 	        <h2>Quitter cvvfr-shop</h2>
 	        <a href="logout.php">Byebye</a>        
