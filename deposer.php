@@ -153,7 +153,7 @@ if(isset($_POST['ok'])) {
  				while($ligne=mysqli_fetch_assoc($result)) {
 					extract($ligne);
 					$reference_designation= "- " .$reference. " - " .$designation. " -";
-					echo"<option value='$reference_designation'>$reference_designation\n";
+					echo"<option value='$reference'>$reference_designation\n";
 				}
 				mysqli_close($connexion);            	
             ?>
