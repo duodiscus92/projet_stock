@@ -42,6 +42,7 @@ if(isset($_POST['ok'])){
 
 		$designation = mysqli_real_escape_string($connexion, htmlspecialchars($_POST['designation']));
 		$udv = mysqli_real_escape_string($connexion, htmlspecialchars($_POST['udv']));
+		$seuilbas = mysqli_real_escape_string($connexion, htmlspecialchars($_POST['seuilbas']));
 		$createur = $_SESSION['id'];
 	
 		// recuperation de l'id categorie
