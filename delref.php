@@ -151,11 +151,11 @@ if(isset($_POST['ok'])){
             <input type="radio" name="suprmod" value="supprimer" >Supprimer la référence
             <input type="radio" name="suprmod" value="ignorer" checked="checked" >Ne rien faire</br>
 
-            <label for="reference">Référence (*) :</label>
-            <input type="text" id="reference" name="reference" size='65' maxlength='65' value="<?php if (isset($_POST['reference'])){echo $_POST['reference'];} ?>"</td></br>
-
             <label for="reference">Identifiant :</label>
             <input type="number" id="refid" name="refid" size='65' maxlength='65' value="<?php if (isset($_POST['refid'])){echo $_POST['refid'];} ?>"</td></br>
+
+            <label for="reference">Référence :</label>
+            <input type="text" id="reference" name="reference" size='65' maxlength='65' value="<?php if (isset($_POST['reference'])){echo $_POST['reference'];} ?>"</td></br>
 
             <label for="designation">Désignation :</label>
             <input type="text" id="designation" name="designation" size='65' maxlength='65' value="<?php if (isset($_POST['designation'])){echo $_POST['designation'];} ?>"</td></br>
