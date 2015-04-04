@@ -35,7 +35,7 @@ if(isset($_POST['ok'])){
 		$result=mysqli_query($connexion, "SELECT * FROM article WHERE reference LIKE '$ref'")
 			or die('Requete SELECT impossible'. mysqli_error($connexion));
 		if($row = mysqli_fetch_assoc($result)){
-			echo "La référence '. $ref. ' eéxiste dejà<br>";
+			echo "La référence '. $ref. ' éxiste dejà<br>";
 			header ("Refresh: 3;URL=creerref.php");
 			exit();
 		}
@@ -110,7 +110,7 @@ if(isset($_POST['ok'])){
 			}
 		}
 /**/	
-		mysqli_query($connexion, "INSERT INTO article VALUES('', UPPER('$ref'), '$id_categorie', '$id_souscategorie', UPPER('$designation'), '$id_destination', '$id_sousdestination', '$udv', NOW(), '$createur')")
+		mysqli_query($connexion, "INSERT INTO article VALUES('', UPPER('$ref'), '$id_categorie', '$id_souscategorie', UPPER('$designation'), '$id_destination', '$id_sousdestination', '$udv', $seuilbas, NOW(), '$createur')")
 			or die('Requete INSERT impossible'. mysqli_error($connexion));
 		mysqli_close($connexion);
 		echo '<script>alert("La référence a été enregistrée avec succès");</script>';
@@ -151,6 +151,9 @@ if(isset($_POST['ok'])){
                        
             <label for="udv">UDV :</label>
             <input type="text" id="udv" name="udv" size='65' maxlength='65' value="<?php if (isset($_POST['udv'])){echo $_POST['udv'];} ?>"</td></br>
+                       
+            <label for="seuilbas">Seuil bas :</label>
+            <input type="number" id="seuilbas" name="seuilbas" size='65' maxlength='65' value="<?php if (isset($_POST['seuilbas'])){echo $_POST['seuilbas'];} ?>"</td></br>
 <!--
             <label for="prixha">Prix d'achat (+) :</label>
             <input type="text" id="prixha" name="prixha" size='65' maxlength='65' value="<?php if (isset($_POST['prixha'])){echo $_POST['prixha'];} ?>"</td></br>
