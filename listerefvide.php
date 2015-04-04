@@ -2,7 +2,7 @@
 session_start();
 if(isset($_POST['ok'])) {
 		$message="<p>Paramétrage du filtre :</p><ul><li>Toute les références vides</li> ";
-		$requete="SELECT * FROM article WHERE article.reference NOT IN (SELECT reference FROM journal)";
+		$requete="SELECT * FROM article,categorie WHERE article.id_categorie=categorie.id_categorie AND (article.reference NOT IN (SELECT reference FROM journal))";
 		// compléter la requete
 		$etou = $_POST['etou1'];
 		$connexion=mysqli_connect("localhost", $_SESSION['stocklogin'], $_SESSION['stockpwd'])
@@ -61,8 +61,8 @@ if(isset($_POST['ok'])) {
 		while($ligne=mysqli_fetch_assoc($result)) {
 			extract($ligne);
 			$id=$ligne['id_article'];
-			$categorie="tbd";
-			//$categorie = $ligne ['nom'];
+			//$categorie="tbd";
+			$categorie = $ligne ['nom'];
 			$destination="tbd";
 			$reference=$ligne['reference'];
 			$designation=$ligne['designation'];
