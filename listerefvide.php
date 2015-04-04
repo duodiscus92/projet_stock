@@ -1,7 +1,7 @@
 ﻿<?php
 session_start();
 if(isset($_POST['ok'])) {
-		$message="<p>Paramétrage du filtre :</p><ul><li>Toute les références ...</li> ";
+		$message="<p>Paramétrage du filtre :</p><ul><li>Toutes les références ...</li> ";
 		$requete="SELECT *, categorie.nom AS nomcat, destination.nom AS nomdest FROM article,categorie,destination WHERE article.id_categorie=categorie.id_categorie AND article.id_destination=destination.id_destination";
 		// compléter la requete
 		$etou = $_POST['etou0'];

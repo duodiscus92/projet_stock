@@ -29,7 +29,7 @@
     
     <body>
     	<?php
-			echo '<h1>Consulter les références vides (sans stock) : '.$_SESSION['stockname']. '</h1>';
+			echo '<h1>Consulter la liste des références: '.$_SESSION['stockname']. '</h1>';
 			echo '<p> Session de : ' .$_SESSION['id']. ' --- Statut : '.$_SESSION['type_statut']. '</p>';
 		?>
         <a href="acceuil.php">Retour au menu principal</a><br />
