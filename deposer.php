@@ -148,11 +148,12 @@ if(isset($_POST['ok'])) {
 					or die('Connexion au serveur impossible'. mysqli_error($connexion));
 				mysqli_select_db($connexion, $_SESSION['stockdb'])
 					or die('Selection de la base impossible' . mysqli_error($connexion));
-				$result=mysqli_query($connexion, "SELECT reference FROM article ORDER BY reference")
+				$result=mysqli_query($connexion, "SELECT reference,designation FROM article ORDER BY reference")
 					or die('Requete SELECT impossible'. mysqli_error($connexion));
  				while($ligne=mysqli_fetch_assoc($result)) {
 					extract($ligne);
-					echo"<option value='$reference'>$reference\n";
+					$reference_designation= "- " .$reference. " - " .$designation. " -";
+					echo"<option value='$reference'>$reference_designation\n";
 				}
 				mysqli_close($connexion);            	
             ?>
