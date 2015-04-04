@@ -2,7 +2,7 @@
 session_start();
 if(isset($_POST['ok'])) {
 		$message="<p>Paramétrage du filtre :</p><ul><li>Tout le stock</li> ";
-		$requete="SELECT * FROM journal,article,categorie WHERE  journal.reference=article.reference AND article.id_categorie=categorie.id_categorie";
+		$requete="SELECT *,journal.date_creation AS jdcr FROM journal,article,categorie WHERE  journal.reference=article.reference AND article.id_categorie=categorie.id_categorie";
 		//$requeteprixtotal="SELECT SUM(prixttc) AS prix_total FROM journal,article WHERE  journal.reference=article.reference";
 		//$requetequantitetotal="SELECT SUM(quantite) AS quantite_total FROM journal,article WHERE  journal.reference=article.reference";
 		// compléter la requete
@@ -106,7 +106,8 @@ if(isset($_POST['ok'])) {
 			$createur=$ligne['createur_mouvement'];
 			$dateha=$ligne['dateha'];
 			$createur=$ligne['createur_mouvement'];
-			$datecreation=$ligne['journal.date_creation'];
+			//$datecreation=$ligne['date_creation'];
+			$datecreation=$ligne['jdcr'];
 			$reference=$ligne['reference'];
 			$quantite=$ligne['quantite'];
 			$prixht=$ligne['prixht'];
