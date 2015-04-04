@@ -31,7 +31,7 @@
 	    <p>
 	    	<h2>Opérations de consultation</h2>
 	        <a href="consulter.php" onClick=verifStatut(2)>Consulter l'état du stock</a><br />
-	        <a href="refvide.php" onClick=verifStatut(2)>Lister les références vides (pas de stock)</a><br />
+	        <a href="refvide.php" onClick=verifStatut(2)>Lister les références</a><br />
 	        <a href="notice.php" onClick=verifStatut(2)>Notice d'utilisation</a><br />
 	    	<h2>Opérations de modification</h2>
 	        <a href="deposer.php" onClick=verifStatut(3)>Déposer dans le stock</a><br />

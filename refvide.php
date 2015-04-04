@@ -41,10 +41,10 @@
             <p> </p>
 
 			<fieldset>
-            <label for="etou">Références vides :</label>
-            <input type="radio" name="etou" value="et" >Uniquement
-            <input type="radio" name="etou" value="ou" >Exclure
-            <input type="radio" name="etou" value="ignorer" checked="checked" >Ignorer</br>
+            <label for="etou0">Références vides :</label>
+            <input type="radio" name="etou0" value="et" >Uniquement
+            <input type="radio" name="etou0" value="ou" >Exclure
+            <input type="radio" name="etou0" value="ignorer" checked="checked" >Ignorer</br>
         	</fieldset>
             <p> </p>
 

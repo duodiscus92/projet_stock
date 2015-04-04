@@ -2,8 +2,21 @@
 session_start();
 if(isset($_POST['ok'])) {
 		$message="<p>Paramétrage du filtre :</p><ul><li>Toute les références vides</li> ";
-		$requete="SELECT *, categorie.nom AS nomcat, destination.nom AS nomdest FROM article,categorie,destination WHERE article.id_categorie=categorie.id_categorie AND article.id_destination=destination.id_destination AND (article.reference NOT IN (SELECT reference FROM journal))";
+		$requete="SELECT *, categorie.nom AS nomcat, destination.nom AS nomdest FROM article,categorie,destination WHERE article.id_categorie=categorie.id_categorie AND article.id_destination=destination.id_destination";
 		// compléter la requete
+		$etou = $_POST['etou0'];
+		if($etou != 'ignorer'){
+			if($etou == 'et'){
+				$requete .= " AND (article.reference NOT IN (SELECT reference FROM journal))"; 
+				//$requete .= "'"; 
+				$message .= "<li>Mais uniquement les références vides :".$reference."</li>"; 
+			}
+			else{
+				$requete .= " AND (article.reference IN (SELECT reference FROM journal))"; 
+				//$requete .= "'"; 
+				$message .= "<li>Mais en excluant les références vides :".$reference."</li>"; 
+			}
+		}
 		$etou = $_POST['etou1'];
 		$connexion=mysqli_connect("localhost", $_SESSION['stocklogin'], $_SESSION['stockpwd'])
 			or die('Connexion au serveur impossible'. mysqli_error($connexion));
