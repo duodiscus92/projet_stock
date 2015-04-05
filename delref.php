@@ -46,7 +46,7 @@ if(isset($_POST['ok'])){
 			mysqli_close($connexion);
 		}
 		else{
-			msgbox($error . $msgtab['FILLALLITEM'[$lang]);
+			msgbox($error . $msgtab['FILLALLITEM'][$lang]);
 		}
 	}
 /*
@@ -85,7 +85,7 @@ if(isset($_POST['ok'])){
 	} 
 */
 	else {
-		//msgbox($error . $msgtab['FILLALLITEM'[$lang]);
+		//msgbox($error . $msgtab['FILLALLITEM'][$lang]);
 		echo '<script>alert("Tous les champs obligatoires n\'ont pas été renseignés");</script>';
 		//header ("Refresh: 3;URL=delref.php");
 	}
