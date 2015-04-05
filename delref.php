@@ -25,7 +25,8 @@
 if(isset($_POST['ok'])){
 	if($_POST['suprmod']=='ignorer'){
 		// action :  ignorer
-		msgbox($info. "Vous n'avez sélectionné aucune action");
+		echo '<script>alert("Vous n\'avez sélectionné aucune action");</script>';
+		//msgbox($info. "Vous n'avez sélectionné aucune action");
 	}
 	else if($_POST['suprmod']=='supprimer'){
 		// action : supprimer une référence
@@ -44,11 +45,13 @@ if(isset($_POST['ok'])){
 				// la reference existe et elle est  vide, on peut donc la supprimer
 				$result=mysqli_query($connexion, "DELETE FROM article WHERE id_article ='$refid'")
 					or die('Requete DELETE impossible'. mysqli_error($connexion));				
-				msgbox($info. "La référence a été supprimée avec succès");
+				echo '<script>alert("La référence a été supprimée avec succès");</script>';
+				//msgbox($info. "La référence a été supprimée avec succès");
 			}
 			else{
 				// soit la référence n'existe pas soit elle est non vide
-				msgbox($error. "Reference inexistante ou non vide");
+				echo '<script>alert("Reference inexistante ou non vide");</script>';
+				//msgbox($error. "Reference inexistante ou non vide");
 			}
 			mysqli_close($connexion);
 		}
@@ -78,19 +81,20 @@ if(isset($_POST['ok'])){
 			mysqli_query($connexion, "UPDATE article SET reference=UPPER('$ref'), designation=UPPER('$designation'),  udv='$udv', seuilbas='$seuilbas', date_creation=NOW(), createur_article='$createur' WHERE id_article='$refid'")
 				or die('Requete UPDATE impossible'. mysqli_error($connexion));
 			mysqli_close($connexion);
-			//echo '<script>alert("La référence a été enregistrée avec succès");</script>';
-			msgbox($info. "La référence a été modifiée avec succès");
+			echo '<script>alert("La référence a été modifiée avec succès");</script>';
+			//msgbox($info. "La référence a été modifiée avec succès");
 		}
 		else {
 			// la référence n'existe pas
-			msgbox($error. "La référence n'existe pas");
+			echo '<script>alert("La référence n\'existe pas");</script>';
+			//msgbox($error. "La référence n'existe pas");
 			//header ("Refresh: 3;URL=delref.php");
 			//exit();
 		}
 	} 
 	else {
-		msgbox($error . $msgtab['FILLALLITEM'[$lang]);
-		//echo '<script>alert("Tous les champs obligatoires n\'ont pas été renseignés");</script>';
+		//msgbox($error . $msgtab['FILLALLITEM'[$lang]);
+		echo '<script>alert("Tous les champs obligatoires n\'ont pas été renseignés");</script>';
 		//header ("Refresh: 3;URL=delref.php");
 	}
 }
