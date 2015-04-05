@@ -48,7 +48,7 @@ if(isset($_POST['ok'])){
 		}
 	}
 	else if(!empty($_POST['refid']) && (!empty($_POST['reference']) || !empty($_POST['designation']) 
-			|| !empty($_POST['udv']) || !empty($_POST['seuilbas'])) {
+			|| !empty($_POST['udv']) || !empty($_POST['seuilbas'])) ){
 		// action  : modifier la référence
 		// connexion à la bd
 		$connexion=mysqli_connect("localhost", $_SESSION['stocklogin'], $_SESSION['stockpwd'])
