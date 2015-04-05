@@ -47,7 +47,6 @@ if(isset($_POST['ok'])){
 			msgbox($error . $msgtab['FILLALLITEM'][$lang]);
 		}
 	}
-/*
 	else if(!empty($_POST['refid']) && !empty($_POST['reference']) && !empty($_POST['designation'])) {
 		// action  : modifier la référence
 		// connexion à la bd
@@ -80,8 +79,7 @@ if(isset($_POST['ok'])){
 			//header ("Refresh: 3;URL=delref.php");
 			//exit();
 		}
-	} 
-*/
+	}
 	else {
 		//msgbox($error . $msgtab['FILLALLITEM'][$lang]);
 		echo '<script>alert("Tous les champs obligatoires n\'ont pas été renseignés");</script>';
