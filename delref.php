@@ -47,7 +47,8 @@ if(isset($_POST['ok'])){
 			msgbox($error . $msgtab['FILLALLITEM'][$lang]);
 		}
 	}
-	else if(!empty($_POST['refid']) && !empty($_POST['reference']) && !empty($_POST['designation'])) {
+	else if(!empty($_POST['refid']) && (!empty($_POST['reference']) || !empty($_POST['designation']) 
+			|| !empty($_POST['udv']) || !empty($_POST['seuilbas'])) {
 		// action  : modifier la référence
 		// connexion à la bd
 		$connexion=mysqli_connect("localhost", $_SESSION['stocklogin'], $_SESSION['stockpwd'])
@@ -61,12 +62,29 @@ if(isset($_POST['ok'])){
 			or die('Requete SELECT impossible'. mysqli_error($connexion));
 		if($row = mysqli_fetch_assoc($result)){
 			// la référence existe, on va procéder aux changements
-			$ref = mysqli_real_escape_string($connexion, htmlspecialchars($_POST['reference']));
-			$designation = mysqli_real_escape_string($connexion, htmlspecialchars($_POST['designation']));
-			$udv = mysqli_real_escape_string($connexion, htmlspecialchars($_POST['udv']));
-			$seuilbas = mysqli_real_escape_string($connexion, htmlspecialchars($_POST['seuilbas']));
+			// on prépare la requete car son format est variable
+			$requete = "UPDATE article SET reference=";
+			// on complete la requete en fonction des champs renseignés
+			if(!empty($_POST['reference'])){
+				$ref = mysqli_real_escape_string($connexion, htmlspecialchars($_POST['reference']));
+				$requete .= "UPPER('$ref')";
+			}
+			if(!empty($_POST['designation'])){
+				$designation = mysqli_real_escape_string($connexion, htmlspecialchars($_POST['designation']));
+				$requete .=",  designation=UPPER('$designation')";
+			}
+			if(!empty($_POST['udv'])){
+				$udv = mysqli_real_escape_string($connexion, htmlspecialchars($_POST['udv']));
+				$requete .= ",  udv='$udv'";
+			}
+			if(!empty($_POST['seuilbas'])){
+				$seuilbas = mysqli_real_escape_string($connexion, htmlspecialchars($_POST['seuilbas']));
+				$requete .= ", seuilbas='$seuilbas'";
+			}
+			// quelque soient les champs renseignés ci-dessus, la requete doit être complétée comme ci-dessous
 			$createur = $_SESSION['id'];
-			mysqli_query($connexion, "UPDATE article SET reference=UPPER('$ref'), designation=UPPER('$designation'),  udv='$udv', seuilbas='$seuilbas', date_creation=NOW(), createur_article='$createur' WHERE id_article='$refid'")
+			$requete .= ", date_creation=NOW(), createur_article='$createur' WHERE id_article='$refid'";
+			mysqli_query($connexion, $requete)
 				or die('Requete UPDATE impossible'. mysqli_error($connexion));
 			mysqli_close($connexion);
 			echo '<script>alert("La référence a été modifiée avec succès");</script>';
@@ -82,7 +100,7 @@ if(isset($_POST['ok'])){
 	}
 	else {
 		//msgbox($error . $msgtab['FILLALLITEM'][$lang]);
-		echo '<script>alert("Tous les champs obligatoires n\'ont pas été renseignés");</script>';
+		echo '<script>alert("Au moins un champ doit être renseigné (en plus de l\'identifiant)");</script>';
 		//header ("Refresh: 3;URL=delref.php");
 	}
 }
@@ -106,7 +124,7 @@ if(isset($_POST['ok'])){
 		<p> 
 		Attention ! pour supprimer une référence celle-ci doit être vide (c'est à dire pas de stock sur cette référence)<br>
 		Attention ! pour supprimer une référence seul le champ Identidiant doit être renseigné (les autres sont ignorés)<br>
-		Attention ! pour modifier une référence renseigner au moins : Identifiant, Référence, Désignation<br>
+		Attention ! pour modifier une référence renseigner au moins : Identifiant et un autre champ (les champs vides ne sont pas modifiés)<br>
 		Attention ! pour connaitre la valeur de l'identifiant d'une référence, consulter la liste des références<br>
 		</p>
 	    <form action="<?php echo($_SERVER['PHP_SELF']); ?>" method="post" id="chg">
