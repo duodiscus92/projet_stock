@@ -1,5 +1,7 @@
 ﻿<?php
 //session_start();
+	include('stocklib.php');
+	include('stock.conf.php');
 	require('control_session.php');
 	if($_SESSION['statut'] <4){
 		echo("<h2>Votre statut ne vous autorise pas à modifier supprimer une référence </h2>");
@@ -7,20 +9,6 @@
 		exit();
 }
 ?>
-<!--
-	echo("<?xml version=\"1.0\" encoding=\"iso-8859-1\"?>\n");
-	/* On récupère si elle existe la valeur de la categorie envoyée par le formulaire */
-
-	if(isset($_POST['categorie'])){
-		$iddest = $_POST['categorie'];
-	}
-	else if (isset($_POST['destination'])){
-		$iddest = $_POST['destination'];
-	}
-	else{
-		$iddest = null;
-	}
--->
 <?php
 if(isset($_POST['ok'])){
 	if($_POST['suprmod']=='ignorer'){
