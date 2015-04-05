@@ -16,6 +16,7 @@ if(isset($_POST['ok'])){
 		echo '<script>alert("Vous n\'avez sélectionné aucune action");</script>';
 		//msgbox($info. "Vous n'avez sélectionné aucune action");
 	}
+/*
 	else if($_POST['suprmod']=='supprimer'){
 		// action : supprimer une référence
 		if(!empty($_POST['refid'])){
@@ -80,6 +81,7 @@ if(isset($_POST['ok'])){
 			//exit();
 		}
 	} 
+*/
 	else {
 		//msgbox($error . $msgtab['FILLALLITEM'[$lang]);
 		echo '<script>alert("Tous les champs obligatoires n\'ont pas été renseignés");</script>';
