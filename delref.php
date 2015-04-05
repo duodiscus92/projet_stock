@@ -75,7 +75,7 @@ if(isset($_POST['ok'])){
 			}
 			if(!empty($_POST['udv'])){
 				$udv = mysqli_real_escape_string($connexion, htmlspecialchars($_POST['udv']));
-				$requete .= ",  udv='$udv'";
+				$requete .= ",  udv=".$udv."";
 			}
 			if(!empty($_POST['seuilbas'])){
 				$seuilbas = mysqli_real_escape_string($connexion, htmlspecialchars($_POST['seuilbas']));
