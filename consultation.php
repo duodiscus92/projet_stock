@@ -120,8 +120,8 @@ if(isset($_POST['ok'])) {
 			$categorie = $ligne ['nom'];
 			// calcul des totaux
 			$totalqte += $ligne['quantite'];
-			$totalprixht += $ligne['prixht'];
-			$totalprixttc += $ligne['prixttc'];
+			$totalprixht += $ligne['prixht']*$ligne['quantite'];
+			$totalprixttc += $ligne['prixttc']*$ligne['quantite'];
 			// préparation du tableau (ligne d'entête)			
 			echo "<tr><td align='center'>$id</td><td align='left'>$categorie</td><td align='left'>$reference</td><td align='left'>$designation</td><td align='right'>$prixht_justif
 				</td><td align='right'>$prixttc_justif</td><td align='right'>$quantite</td><td align='right'>$prixtotalttc_justif
