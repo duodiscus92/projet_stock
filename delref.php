@@ -30,7 +30,6 @@ if(isset($_POST['ok'])){
 /*
 			$result=mysqli_query($connexion, "SELECT * FROM article WHERE id_article LIKE '$refid' AND (article.reference NOT IN (SELECT reference FROM journal))")
 				or die('Requete SELECT impossible'. mysqli_error($connexion));
-*/
 			if($row = mysqli_fetch_assoc($result)){
 				// la reference existe et elle est  vide, on peut donc la supprimer
 				$result=mysqli_query($connexion, "DELETE FROM article WHERE id_article ='$refid'")
@@ -43,6 +42,7 @@ if(isset($_POST['ok'])){
 				echo '<script>alert("Reference inexistante ou non vide");</script>';
 				//msgbox($error. "Reference inexistante ou non vide");
 			}
+*/
 			mysqli_close($connexion);
 		}
 		else{
