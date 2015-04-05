@@ -27,7 +27,6 @@ if(isset($_POST['ok'])){
 			// preparation de l'id
 			$refid = mysqli_real_escape_string($connexion, htmlspecialchars($_POST['refid']));
 			// verifier que la ref existe et qu'elle est vide
-/*
 			$result=mysqli_query($connexion, "SELECT * FROM article WHERE id_article LIKE '$refid' AND (article.reference NOT IN (SELECT reference FROM journal))")
 				or die('Requete SELECT impossible'. mysqli_error($connexion));
 			if($row = mysqli_fetch_assoc($result)){
@@ -42,7 +41,6 @@ if(isset($_POST['ok'])){
 				echo '<script>alert("Reference inexistante ou non vide");</script>';
 				//msgbox($error. "Reference inexistante ou non vide");
 			}
-*/
 			mysqli_close($connexion);
 		}
 		else{
