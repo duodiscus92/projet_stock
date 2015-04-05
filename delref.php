@@ -68,22 +68,31 @@ if(isset($_POST['ok'])){
 			if(!empty($_POST['reference'])){
 				$ref = mysqli_real_escape_string($connexion, htmlspecialchars($_POST['reference']));
 				$requete .= "reference=UPPER(".$ref.")";
+				$virgule=',';
 			}
+			else
+				$virgule="";
 			if(!empty($_POST['designation'])){
 				$designation = mysqli_real_escape_string($connexion, htmlspecialchars($_POST['designation']));
-				$requete .=",  designation=UPPER(".$designation.")";
+				$requete .= $virgule. " designation=UPPER(".$designation.")";
+				$virgule=',';
 			}
+			else
+				virgule="";
 			if(!empty($_POST['udv'])){
 				$udv = mysqli_real_escape_string($connexion, htmlspecialchars($_POST['udv']));
-				$requete .= ",  udv=".$udv."";
+				$requete .= $virgule. " udv=".$udv."";
+				$virgule=',';
 			}
+			else
+				$virgule="";
 			if(!empty($_POST['seuilbas'])){
 				$seuilbas = mysqli_real_escape_string($connexion, htmlspecialchars($_POST['seuilbas']));
-				$requete .= ", seuilbas=".$seuilbas."";
+				$requete .= $virgule. " seuilbas=".$seuilbas."";
 			}
 			// quelque soient les champs renseignés ci-dessus, la requete doit être complétée comme ci-dessous
 			$createur = $_SESSION['id'];
-			$requete .= ", date_creation=NOW(), createur_article=".$createur. " WHERE id_article=".$refid."";
+			$requete .= ", date_creation=NOW(), createur_article=".'$createur'. " WHERE id_article=".$refid."";
 			echo $requete;
 			mysqli_query($connexion, $requete)
 				or die('Requete UPDATE impossible'. mysqli_error($connexion));
