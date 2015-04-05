@@ -45,6 +45,10 @@ $msgtab = array(
 	"FILLALLITEM"	=> array(
 		  "fr"		=> "Tous les champs doivent obligatoirement être renseignés",
 		  "en"		=> "All fields must be filled"
+		  ),
+	"FILLONEITEM"	=> array(
+		  "fr"		=> "Au moins un champ doit être renseigné (en plus de l'ID)",
+		  "en"		=> "At least one field must be filled (plus the ID)"
 		  )
 );
 $error=$msgtab['ERR'][$lang];
