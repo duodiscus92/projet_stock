@@ -79,7 +79,7 @@ if(isset($_POST['ok'])){
 				$virgule=',';
 			}
 			else{
-				virgule="";
+				$virgule="";
 			}
 			if(!empty($_POST['udv'])){
 				$udv = mysqli_real_escape_string($connexion, htmlspecialchars($_POST['udv']));
