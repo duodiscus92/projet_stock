@@ -69,7 +69,7 @@ if(isset($_POST['ok'])) {
 		echo "<p>$message</p>";
 		echo "<table border width=80% cellpadding=6 >";
 		echo "<tr><td align='center'>ID</td><td align='left'>Catégorie</td><td align='left'>Destination</td>
-			<td align='left'>Référence</td><td align='left'>Désignation</td>td align='left'>UDV</td>td align='left'>Seuil</td><td align='right'>Créateur</td>
+			<td align='left'>Référence</td><td align='left'>Désignation</td><td align='left'>UDV</td><td align='left'>Seuil</td><td align='right'>Créateur</td>
 			<td align='right'>Date/heure création</td></tr>";
 		while($ligne=mysqli_fetch_assoc($result)) {
 			extract($ligne);
