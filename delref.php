@@ -67,7 +67,7 @@ if(isset($_POST['ok'])){
 			// on complete la requete en fonction des champs renseignés
 			if(!empty($_POST['reference'])){
 				$ref = mysqli_real_escape_string($connexion, htmlspecialchars($_POST['reference']));
-				$requete .= "reference=UPPER(".$ref.")";
+				$requete .= "reference=UPPER('$ref')";
 				$virgule=',';
 			}
 			else{
@@ -75,7 +75,7 @@ if(isset($_POST['ok'])){
 			}
 			if(!empty($_POST['designation'])){
 				$designation = mysqli_real_escape_string($connexion, htmlspecialchars($_POST['designation']));
-				$requete .= $virgule. " designation=UPPER(".$designation.")";
+				$requete .= $virgule. " designation=UPPER('$designation')";
 				$virgule=',';
 			}
 			else{
