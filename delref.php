@@ -27,8 +27,10 @@ if(isset($_POST['ok'])){
 			// preparation de l'id
 			$refid = mysqli_real_escape_string($connexion, htmlspecialchars($_POST['refid']));
 			// verifier que la ref existe et qu'elle est vide
+/*
 			$result=mysqli_query($connexion, "SELECT * FROM article WHERE id_article LIKE '$refid' AND (article.reference NOT IN (SELECT reference FROM journal))")
 				or die('Requete SELECT impossible'. mysqli_error($connexion));
+*/
 			if($row = mysqli_fetch_assoc($result)){
 				// la reference existe et elle est  vide, on peut donc la supprimer
 				$result=mysqli_query($connexion, "DELETE FROM article WHERE id_article ='$refid'")
