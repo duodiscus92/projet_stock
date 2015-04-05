@@ -16,7 +16,6 @@ if(isset($_POST['ok'])){
 		echo '<script>alert("Vous n\'avez sélectionné aucune action");</script>';
 		//msgbox($info. "Vous n'avez sélectionné aucune action");
 	}
-/*
 	else if($_POST['suprmod']=='supprimer'){
 		// action : supprimer une référence
 		if(!empty($_POST['refid'])){
@@ -48,6 +47,7 @@ if(isset($_POST['ok'])){
 			msgbox($error . $msgtab['FILLALLITEM'[$lang]);
 		}
 	}
+/*
 	else if(!empty($_POST['refid']) && !empty($_POST['reference']) && !empty($_POST['designation'])) {
 		// action  : modifier la référence
 		// connexion à la bd
