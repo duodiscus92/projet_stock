@@ -63,11 +63,11 @@ if(isset($_POST['ok'])){
 		if($row = mysqli_fetch_assoc($result)){
 			// la référence existe, on va procéder aux changements
 			// on prépare la requete car son format est variable
-			$requete = "UPDATE article SET reference=";
+			$requete = "UPDATE article SET ";
 			// on complete la requete en fonction des champs renseignés
 			if(!empty($_POST['reference'])){
 				$ref = mysqli_real_escape_string($connexion, htmlspecialchars($_POST['reference']));
-				$requete .= "UPPER(".$ref.")";
+				$requete .= "reference=UPPER(".$ref.")";
 			}
 			if(!empty($_POST['designation'])){
 				$designation = mysqli_real_escape_string($connexion, htmlspecialchars($_POST['designation']));
@@ -83,7 +83,7 @@ if(isset($_POST['ok'])){
 			}
 			// quelque soient les champs renseignés ci-dessus, la requete doit être complétée comme ci-dessous
 			$createur = $_SESSION['id'];
-			$requete .= ", date_creation=NOW(), createur_article=".$createur. "WHERE id_article=".$refid."";
+			$requete .= ", date_creation=NOW(), createur_article=".$createur. " WHERE id_article=".$refid."";
 			echo $requete;
 			mysqli_query($connexion, $requete)
 				or die('Requete UPDATE impossible'. mysqli_error($connexion));
