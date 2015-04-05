@@ -69,7 +69,7 @@ if(isset($_POST['ok'])) {
 		echo "<p>$message</p>";
 		echo "<table border width=80% cellpadding=6 >";
 		echo "<tr><td align='center'>ID</td><td align='left'>Catégorie</td><td align='left'>Destination</td>
-			<td align='left'>Référence</td><td align='left'>Désignation</td><td align='right'>Créateur</td>
+			<td align='left'>Référence</td><td align='left'>Désignation</td>td align='left'>UDV</td>td align='left'>Seuil</td><td align='right'>Créateur</td>
 			<td align='right'>Date/heure création</td></tr>";
 		while($ligne=mysqli_fetch_assoc($result)) {
 			extract($ligne);
@@ -82,9 +82,11 @@ if(isset($_POST['ok'])) {
 			$designation=$ligne['designation'];
 			$createur=$ligne['createur_article'];
 			$datecreation=$ligne['date_creation'];
+			$udv=$ligne['udv'];
+			$seuil=$ligne['seuilbas'];
 			// préparation du tableau (ligne d'entête)			
 			echo "<tr><td align='center'>$id</td><td align='left'>$categorie</td><td align='left'>$destination</td>
-				<td align='left'>$reference</td><td align='left'>$designation</td><td align='right'>$createur</td>
+				<td align='left'>$reference</td><td align='left'>$designation</td><td align='left'>$udv</td><td align='left'>$seuilbas</td><td align='right'>$createur</td>
 				<td align='right'>$datecreation</td></tr>"; 		
 		}
 		echo "</table>";
