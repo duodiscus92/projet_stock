@@ -23,103 +23,75 @@
 -->
 <?php
 if(isset($_POST['ok'])){
-	if(!empty($_POST['reference']) && !empty($_POST['categorie']) && !empty($_POST['destination']) && !empty($_POST['designation'])) {
-		// connexion ? la bd
+	if($_POST['suprmod']=='ignorer'){
+		// action :  ignorer
+		msgbox($info. "Vous n'avez sélectionné aucune action");
+	}
+	else if($_POST['suprmod']=='supprimer'){
+		// action : supprimer une référence
+		if(!empty($_POST['refid'])){
+			//on traite l'id et si la référence existe et est vide on supprime
+			$connexion=mysqli_connect("localhost", $_SESSION['stocklogin'], $_SESSION['stockpwd'])
+				or die('Connexion au serveur impossible'. mysqli_error($connexion));
+			mysqli_select_db($connexion, $_SESSION['stockdb'])
+				or die('Selection de la base impossible' . mysqli_error($connexion));
+			// preparation de l'id
+			$refid = mysqli_real_escape_string($connexion, htmlspecialchars($_POST['refid']));
+			// verifier que la ref existe et qu'elle est vide
+			$result=mysqli_query($connexion, "SELECT * FROM article WHERE id_article LIKE '$refid' AND (article.reference NOT IN (SELECT reference FROM journal))")
+				or die('Requete SELECT impossible'. mysqli_error($connexion));
+			if($row = mysqli_fetch_assoc($result)){
+				// la reference existe et elle est  vide, on peut donc la supprimer
+				$result=mysqli_query($connexion, "DELETE FROM article WHERE id_article ='$refid'")
+					or die('Requete DELETE impossible'. mysqli_error($connexion));				
+				msgbox($info. "La référence a été supprimée avec succès");
+			}
+			else{
+				// soit la référence n'existe pas soit elle est non vide
+				msgbox($error. "Reference inexistante ou non vide");
+			}
+			mysqli_close($connexion);
+		}
+		else{
+			msgbox($error . $msgtab['FILLALLITEM'[$lang]);
+		}
+	}
+	else if(!empty($_POST['refid']) && !empty($_POST['reference']) && !empty($_POST['designation'])) {
+		// action  : modifier la référence
+		// connexion à la bd
 		$connexion=mysqli_connect("localhost", $_SESSION['stocklogin'], $_SESSION['stockpwd'])
 			or die('Connexion au serveur impossible'. mysqli_error($connexion));
 		mysqli_select_db($connexion, $_SESSION['stockdb'])
 			or die('Selection de la base impossible' . mysqli_error($connexion));
-		// preparation de la reference et de la designation
-		$ref = mysqli_real_escape_string($connexion, htmlspecialchars($_POST['reference']));
-		// verifier que la reference n'existe pas d?j?
-		$result=mysqli_query($connexion, "SELECT * FROM article WHERE reference LIKE '$ref'")
+		// preparation de l'id
+		$refid = mysqli_real_escape_string($connexion, htmlspecialchars($_POST['refid']));
+		// verifier que la référence existe déjà
+		$result=mysqli_query($connexion, "SELECT * FROM article WHERE id_article LIKE '$refid'")
 			or die('Requete SELECT impossible'. mysqli_error($connexion));
 		if($row = mysqli_fetch_assoc($result)){
-			echo "La référence '. $ref. ' éxiste dejà<br>";
-			header ("Refresh: 3;URL=creerref.php");
-			exit();
-		}
-
-		$designation = mysqli_real_escape_string($connexion, htmlspecialchars($_POST['designation']));
-		$udv = mysqli_real_escape_string($connexion, htmlspecialchars($_POST['udv']));
-		$seuilbas = mysqli_real_escape_string($connexion, htmlspecialchars($_POST['seuilbas']));
-		$createur = $_SESSION['id'];
-	
-		// recuperation de l'id categorie
-		$cible=mysqli_real_escape_string($connexion, htmlspecialchars($_POST['categorie']));
-		$result=mysqli_query($connexion, "SELECT * FROM categorie WHERE nom='$cible'")
-			or die('Requete (categorie) SELECT impossible'. mysqli_error($connexion));
-		if($row = mysqli_fetch_assoc($result)){
-			$id_categorie=$row['id_categorie'];
+			// la référence existe, on va procéder aux changements
+			$ref = mysqli_real_escape_string($connexion, htmlspecialchars($_POST['reference']));
+			$designation = mysqli_real_escape_string($connexion, htmlspecialchars($_POST['designation']));
+			$udv = mysqli_real_escape_string($connexion, htmlspecialchars($_POST['udv']));
+			$seuilbas = mysqli_real_escape_string($connexion, htmlspecialchars($_POST['seuilbas']));
+			$createur = $_SESSION['id'];
+			mysqli_query($connexion, "UPDATE article SET reference=UPPER('$ref'), designation=UPPER('$designation'),  udv='$udv', seuilbas='$seuilbas', date_creation=NOW(), createur_article='$createur' WHERE id_article='$refid'")
+				or die('Requete UPDATE impossible'. mysqli_error($connexion));
+			mysqli_close($connexion);
+			//echo '<script>alert("La référence a été enregistrée avec succès");</script>';
+			msgbox($info. "La référence a été modifiée avec succès");
 		}
 		else {
-			echo "La catégorie '.$cible. n\'existe pas ... <br>";
-			//echo "Vous allez être redirigé vers le menu principal ...<br>";
-			header ("Refresh: 3;URL=creerref.php");
-			exit();
-		}
-/**/
-		// recuperation de l'id souscategorie
-		if(!(isset($_POST['souscategorie']) && $_POST['souscategorie'] != "")){
-			$id_souscategorie=0;
-		}
-		else{
-			$cible=mysqli_real_escape_string($connexion, htmlspecialchars($_POST['souscategorie']));
-			$result=mysqli_query($connexion, "SELECT * FROM sous_categorie WHERE nom='$cible'")
-				or die('Requete (sous categorie) SELECT impossible'. mysqli_error($connexion));
-			if($row = mysqli_fetch_assoc($result)){
-				$id_souscategorie=$row['id_soucat'];
-			}
-			else {
-				//echo "La sous catégorie '.$cible. n\'existe pas ... <br>";
-				//echo "Vous allez être redirigé vers le menu principal ...<br>";
-				//header ("Refresh: 3;URL=creerref.php");
-				//exit();
-			}
-		}
-/**/		
-		// recuperation de l'id destination
-		$cible=mysqli_real_escape_string($connexion, htmlspecialchars($_POST['destination']));
-		$result=mysqli_query($connexion, "SELECT * FROM destination WHERE nom='$cible'")
-			or die('Requete (destination) SELECT impossible'. mysqli_error($connexion));
-		if($row = mysqli_fetch_assoc($result)){
-			$id_destination=$row['id_destination'];
-		}
-		else {
-			echo "La destination '.$cible. n\'existe pas ... <br>";
-			//echo "Vous allez être redirigé vers le menu principal ...<br>";
-			header ("Refresh: 3;URL=creerref.php");
+			// la référence n'existe pas
+			msgbox($error. "La référence n'existe pas");
+			//header ("Refresh: 3;URL=delref.php");
 			//exit();
 		}
-/**/
-		// recuperation de l'id sousdestination
-		if(!(isset($_POST['sousdestination']) && $_POST['sousdestination'] != "")){
-			$id_sousdestination=0;
-		}
-		else {
-			$cible=mysqli_real_escape_string($connexion, htmlspecialchars($_POST['sousdestination']));
-			$result=mysqli_query($connexion, "SELECT * FROM sous_destination WHERE nom='$cible'")
-				or die('Requete (sous destination) SELECT impossible'. mysqli_error($connexion));
-			if($row = mysqli_fetch_assoc($result)){
-				$id_sousdestination=$row['id_sousdest'];
-			}
-			else {
-				//echo "La sous destination '.$cible. n\'existe pas ... <br>";
-				//echo "Vous allez être redirigé vers le menu principal ...<br>";
-				//header ("Refresh: 3;URL=creerref.php");
-				//exit();
-			}
-		}
-/**/	
-		mysqli_query($connexion, "INSERT INTO article VALUES('', UPPER('$ref'), '$id_categorie', '$id_souscategorie', UPPER('$designation'), '$id_destination', '$id_sousdestination', '$udv', '$seuilbas', NOW(), '$createur')")
-			or die('Requete INSERT impossible'. mysqli_error($connexion));
-		mysqli_close($connexion);
-		echo '<script>alert("La référence a été enregistrée avec succès");</script>';
-
 	} 
 	else {
-		echo '<script>alert("Tous les champs obligatoires n\'ont pas été renseignés");</script>';
-		header ("Refresh: 3;URL=creerref.php");
+		msgbox($error . $msgtab['FILLALLITEM'[$lang]);
+		//echo '<script>alert("Tous les champs obligatoires n\'ont pas été renseignés");</script>';
+		//header ("Refresh: 3;URL=delref.php");
 	}
 }
 
@@ -130,7 +102,7 @@ if(isset($_POST['ok'])){
     <head>
         <meta http-equiv="content-type" content="text/xml; charset=utf-8" />
         <link rel="stylesheet" href="style.css" />
-        <title>Creer nouvel article</title>
+        <title>Modifier ou supprimer une référence</title>
     </head>
     <body>      
     	<?php
@@ -141,8 +113,8 @@ if(isset($_POST['ok'])){
         <h2>Veuillez entrer les informations suivantes</h2>
 		<p> 
 		Attention ! pour supprimer une référence celle-ci doit être vide (c'est à dire pas de stock sur cette référence)<br>
-		Attention ! pour supprimer une référence seul le champ Identidiant doit être renseigné<br>
-		Attention ! pour modifier une référence tous les champs doivent être renseignés<br>
+		Attention ! pour supprimer une référence seul le champ Identidiant doit être renseigné (les autres sont ignorés)<br>
+		Attention ! pour modifier une référence renseigner au moins : Identifiant, Référence, Désignation<br>
 		Attention ! pour connaitre la valeur de l'identifiant d'une référence, consulter la liste des références<br>
 		</p>
 	    <form action="<?php echo($_SERVER['PHP_SELF']); ?>" method="post" id="chg">
@@ -151,13 +123,13 @@ if(isset($_POST['ok'])){
             <input type="radio" name="suprmod" value="supprimer" >Supprimer la référence
             <input type="radio" name="suprmod" value="ignorer" checked="checked" >Ne rien faire</br>
 
-            <label for="reference">Identifiant :</label>
+            <label for="refid">Identifiant (*) :</label>
             <input type="number" id="refid" name="refid" size='65' maxlength='65' value="<?php if (isset($_POST['refid'])){echo $_POST['refid'];} ?>"</td></br>
 
-            <label for="reference">Référence :</label>
+            <label for="reference">Référence (*) :</label>
             <input type="text" id="reference" name="reference" size='65' maxlength='65' value="<?php if (isset($_POST['reference'])){echo $_POST['reference'];} ?>"</td></br>
 
-            <label for="designation">Désignation :</label>
+            <label for="designation">Désignation (*) :</label>
             <input type="text" id="designation" name="designation" size='65' maxlength='65' value="<?php if (isset($_POST['designation'])){echo $_POST['designation'];} ?>"</td></br>
                        
             <label for="udv">UDV :</label>
@@ -167,7 +139,7 @@ if(isset($_POST['ok'])){
             <input type="number" id="seuilbas" name="seuilbas" size='65' maxlength='65' value="<?php if (isset($_POST['seuilbas'])){echo $_POST['seuilbas'];} ?>"</td></br>
 
             <label for="bouton">Validation :</label>
-            <input type="submit" name="ok" id="ok" value="Valider suppression ou modification" ></td>
+            <input type="submit" name="ok" id="ok" value="Valider modification ou suppression" ></td>
         </form>
 	</body>
 </html>
