@@ -96,7 +96,7 @@ if(isset($_POST['ok'])){
 			if(!empty($_POST['dateha'])){
 				$dateha = date('Y-m-d H:i:s', strtotime($_POST['dateha']));
 				//$dateha = mysqli_real_escape_string($connexion, htmlspecialchars($_POST['dateha']));
-				$requete .= $virgule. " dateha=".$dateha."";
+				$requete .= $virgule. " dateha='$dateha'";
 			}
 			// quelque soient les champs renseignés ci-dessus, la requete doit être complétée comme ci-dessous
 			$createur = $_SESSION['id'];
