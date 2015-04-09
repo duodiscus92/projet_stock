@@ -46,7 +46,7 @@ if(isset($_POST['ok'])){
 			mysqli_close($connexion);
 		}
 		else{
-			msgbox($error . $msgtab['FILLALLITEM'][$lang]);
+			msgbox($error . "L'identifiant n'est pas renseigné");
 		}
 	}
 	else if(!empty($_POST['refid']) && (!empty($_POST['prixht']) || !empty($_POST['prixttc']) 
