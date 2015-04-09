@@ -170,6 +170,7 @@ if(isset($_POST['ok'])){
 		    else {
 		    	errors += "prixttc : Veuillez taper un nombre(max 2 ch. après la virgule)\n";
 	    	}
+	    </script>
 
         <title>Modifier ou supprimer un article</title>
     </head>
