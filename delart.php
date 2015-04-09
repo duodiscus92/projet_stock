@@ -70,7 +70,7 @@ if(isset($_POST['ok'])){
 			$requete = "UPDATE journal SET ";
 			// on complete la requete en fonction des champs renseignés
 			if(!empty($_POST['prixht'])){
-				$ref = mysqli_real_escape_string($connexion, htmlspecialchars($_POST['prixht']));
+				$prixht = mysqli_real_escape_string($connexion, htmlspecialchars($_POST['prixht']));
 				$requete .= "prixht=".$prixht."";
 				$virgule=',';
 			}
