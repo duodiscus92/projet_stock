@@ -100,7 +100,7 @@ if(isset($_POST['ok'])){
 			// quelque soient les champs renseignés ci-dessus, la requete doit être complétée comme ci-dessous
 			$createur = $_SESSION['id'];
 			$requete .= ", date_creation=NOW(), createur_mouvement='$createur' WHERE id_mouvement=".$refid."";
-			//echo $requete;
+			echo $requete;
 			mysqli_query($connexion, $requete)
 				or die('Requete UPDATE impossible'. mysqli_error($connexion));
 			mysqli_close($connexion);
