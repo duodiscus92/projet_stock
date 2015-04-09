@@ -79,7 +79,7 @@ if(isset($_POST['ok'])){
 			}
 			if(!empty($_POST['prixttc'])){
 				$prixttc = mysqli_real_escape_string($connexion, htmlspecialchars($_POST['prixttc']));
-				$requete .= $virgule. " prixttc=UPPER('$prixttc')";
+				$requete .= $virgule. " prixttc=".$prixttc."";
 				$virgule=',';
 			}
 			else{
@@ -101,17 +101,17 @@ if(isset($_POST['ok'])){
 			// quelque soient les champs renseignés ci-dessus, la requete doit être complétée comme ci-dessous
 			$createur = $_SESSION['id'];
 			$requete .= ", date_creation=NOW(), createur_mouvement='$createur' WHERE id_mouvement=".$refid."";
-			echo $requete;
+			//echo $requete;
 			mysqli_query($connexion, $requete)
 				or die('Requete UPDATE impossible'. mysqli_error($connexion));
 			mysqli_close($connexion);
 			//echo '<script>alert("L'aticle a été modifié avec succès");</script>';
-			msgbox($info. "L'article a été modifié avec succès");
+			msgbox($info."L'article a été modifié avec succès");
 		}
 		else {
 			// L'article n'existe pas
 			//echo '<script>alert("L'article n\'existe pas");</script>';
-			msgbox($error. "L'article n'existe pas");
+			msgbox($error."L'article n'existe pas");
 			//header ("Refresh: 3;URL=delref.php");
 			//exit();
 		}
