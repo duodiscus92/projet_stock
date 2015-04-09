@@ -33,6 +33,7 @@
 	        <a href="consulter.php" onClick=verifStatut(2)>Consulter l'état du stock</a><br />
 	        <a href="deposer.php" onClick=verifStatut(3)>Déposer dans le stock</a><br />
 	        <a href="prelever.php" onClick=verifStatut(3)>Prélever dans le stock</a><br />
+	        <a href="delart.php" onClick=verifStatut(3)>Supprimer ou modifier un article</a><br />
 	    	<h2>Opérations sur les références</h2>
 	        <a href="refvide.php" onClick=verifStatut(2)>Consulter les références</a><br />
 	        <a href="creerref.php" onClick=verifStatut(4)>Créer une nouvelle réference</a><br />
