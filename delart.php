@@ -99,7 +99,7 @@ if(isset($_POST['ok'])){
 			}
 			// quelque soient les champs renseignés ci-dessus, la requete doit être complétée comme ci-dessous
 			$createur = $_SESSION['id'];
-			$requete .= ", date_creation=NOW(), createur_article='$createur' WHERE id_mouvement=".$refid."";
+			$requete .= ", date_creation=NOW(), createur_mouvement='$createur' WHERE id_mouvement=".$refid."";
 			//echo $requete;
 			mysqli_query($connexion, $requete)
 				or die('Requete UPDATE impossible'. mysqli_error($connexion));
@@ -129,6 +129,48 @@ if(isset($_POST['ok'])){
     <head>
         <meta http-equiv="content-type" content="text/xml; charset=utf-8" />
         <link rel="stylesheet" href="style.css" />
+		<script type = "text/javascript"
+			src = "jquery-1.3.2.min.js"></script>
+		<script type = "text/javascript"
+			src = "jquery-ui-1.7.2.custom.min.js"></script>
+		<script type = "text/javascript">    
+		//<![CDATA[
+		
+		$(init);
+		
+		function init(){
+		  //$("h1").addClass("ui-widget-header");
+		  
+		  $("#datePicker").datepicker();
+		  		  
+		} // end init
+		
+		//]]>
+		</script>
+					
+	    <script type = "text/javascript">
+	      //<![CDATA[
+	      function filtrerVirguleFixe(){
+	        var prixht = document.getElementById("prixha").value;
+	        var  prixttc = document.getElementById("prixttc").value;
+	        var quantite = document.getElementById("quantité").value;
+
+	        errors = "";
+	        prixRE=/^[1-9]*[. ][0-9]{2}$/;
+ 
+    	    if(prixht.match(prixRE)){
+		        prixht = parseFloat(prixht);
+	        }
+		    else{
+		    	errors += "Prix HT : Veuillez taper un nombre (max 2 ch. après la virgule)\n";
+	    	}
+	        if(prixttc.match(prixRE)){
+		        prixttc = parseFloat(prixttc);
+	        }
+		    else {
+		    	errors += "prixttc : Veuillez taper un nombre(max 2 ch. après la virgule)\n";
+	    	}
+
         <title>Modifier ou supprimer un article</title>
     </head>
     <body>      
@@ -171,7 +213,7 @@ if(isset($_POST['ok'])){
 			<br></br>
 			<br></br>
             <label for="bouton">Validation :</label>
-            <input type="submit" name="ok" id="ok" value="Valider modification ou suppression" ></td>
+            <input type="submit" name="ok" id="ok" value="Valider modification ou suppression" onclick = "filtrerVirguleFixe()"></td>
         </form>
 	</body>
 </html>
