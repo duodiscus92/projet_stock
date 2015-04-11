@@ -44,7 +44,7 @@
 	        <h2>Opérations spéciales </h2>
 	        <a href="parametrer.php" onClick=verifStatut(4)>Paramétrer le stock</a><br />
 	        <a href="chstatut.php" onClick=verifStatut(5)>Changer le statut des utilisateurs</a><br />
-	        <h2>Divers cvvfr-shop</h2>
+	        <h2>Divers</h2>
 	        <a href="notice.php" onClick=verifStatut(2)>Consulter la notice d'utilisation</a><br />
 	        <a href="logout.php">Quitter (fermer la session)</a>        
 	    </p> 
