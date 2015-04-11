@@ -49,6 +49,10 @@ $msgtab = array(
 	"FILLONEITEM"	=> array(
 		  "fr"		=> "Au moins un champ doit être renseigné (en plus de l'ID)",
 		  "en"		=> "At least one field must be filled (plus the ID)"
+		  ),
+	"ITEMREMOVED"	=> array(
+		  "fr"		=> "L'article demandé et la quantité ont bien été retirés",
+		  "en"		=> "The requested item and quantity have been removed"
 		  )
 );
 $error=$msgtab['ERR'][$lang];

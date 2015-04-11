@@ -1,5 +1,7 @@
 ﻿<?php
 //session_start();
+	include('stocklib.php');
+	include('stock.conf.php');
 	require('control_session.php');
 	if($_SESSION['statut'] <3){
 		echo("<h2>Votre statut ne vous autorise pas à prélever dans le stock</h2>");
@@ -55,6 +57,7 @@ if(isset($_POST['ok'])) {
 			$result=mysqli_query($connexion, "SELECT * FROM journal WHERE reference='$reference'")
 				or die('Requete SELECT impossible'. mysqli_error($connexion));
 		}
+		msgbox($info . $msgtab['ITEMREMOVED'][$lang]);
 	}
 }
 ?>
