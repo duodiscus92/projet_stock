@@ -29,12 +29,21 @@ if(isset($_POST['ok'])) {
 		//echo 'Les champs sont renseignés ...<br>'; 
 		// quantite à prélever
 		$p = $_POST['selectquantite'];
-		// retrouver l'id de la reference
+		// retrouver l'id_article de la référence selectionnée
 		$connexion=mysqli_connect("localhost", $_SESSION['stocklogin'], $_SESSION['stockpwd'])
 			or die('Connexion au serveur impossible'. mysqli_error($connexion));
-		mysqli_select_db($connexion, $_SESSION['stockdb']);
-		$reference=$_POST['reference'];
-		$result=mysqli_query($connexion, "SELECT * FROM journal WHERE reference='$reference'")
+		mysqli_select_db($connexion, $_SESSION['stockdb'])
+			or die('Selection de la base impossible' . mysqli_error($connexion));
+		$result=mysqli_query($connexion, "SELECT id_article FROM article WHERE reference='$nom'")
+			or die('Requete SELECT impossible'. mysqli_error($connexion));
+		$row = mysqli_fetch_assoc($result);
+		$idarticle=$row['id_article'];				
+		// retrouver l'article
+		//$connexion=mysqli_connect("localhost", $_SESSION['stocklogin'], $_SESSION['stockpwd'])
+		//	or die('Connexion au serveur impossible'. mysqli_error($connexion));
+		//mysqli_select_db($connexion, $_SESSION['stockdb']);
+		//$reference=$_POST['reference'];
+		$result=mysqli_query($connexion, "SELECT * FROM journal WHERE id_article='$idarticle'")
 			or die('Requete SELECT impossible'. mysqli_error($connexion));
 		while($row = mysqli_fetch_assoc($result)){
 			$id_mouvement=$row['id_mouvement'];
@@ -53,8 +62,8 @@ if(isset($_POST['ok'])) {
 				$result=mysqli_query($connexion, "DELETE FROM journal WHERE id_mouvement ='$id_mouvement'")
 					or die('Requete SELECT impossible'. mysqli_error($connexion));
 			}
-			// reference suivante
-			$result=mysqli_query($connexion, "SELECT * FROM journal WHERE reference='$reference'")
+			// article suivant
+			$result=mysqli_query($connexion, "SELECT * FROM journal WHERE id_article='$idarticle'")
 				or die('Requete SELECT impossible'. mysqli_error($connexion));
 		}
 		msgbox($info . $msgtab['ITEMREMOVED'][$lang]);
