@@ -2,7 +2,7 @@
 session_start();
 if(isset($_POST['ok'])) {
 		$message="<p>Paramétrage du filtre :</p><ul><li>Toutes les références ...</li> ";
-		$requete="SELECT *, categorie.nom AS nomcat, destination.nom AS nomdest FROM article,categorie,destination WHERE article.id_categorie=categorie.id_categorie AND article.id_destination=destination.id_destination";
+		$requete="SELECT *, article.id_article AS idart, categorie.nom AS nomcat, destination.nom AS nomdest FROM article,categorie,destination WHERE article.id_categorie=categorie.id_categorie AND article.id_destination=destination.id_destination";
 		// compléter la requete
 		$etou = $_POST['etou0'];
 		if($etou != 'ignorer'){
@@ -57,7 +57,7 @@ if(isset($_POST['ok'])) {
 				$requete .= ' AND NOT ';
 				$message .= "<li>Mais en excluant la destination :".$destination."</li>";
 			}
-			$requete .= " article.id_destination=".$id_destination." ORDER BY article.id_article"; 
+			$requete .= " article.id_destination=".$id_destination." ORDER BY idart"; 
 		}
 		$message .="</ul>";
 		//lancer la requete
