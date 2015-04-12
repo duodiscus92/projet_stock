@@ -27,6 +27,8 @@ if(isset($_POST['ok'])) {
 		//echo "Reference:" .$_POST['reference']."</br>";
 		//echo "Quantité à prélever:" .$_POST['quantite']."</br>";		
 		//echo 'Les champs sont renseignés ...<br>'; 
+		// reference à prélever
+		$reference = $_POST['reference'];
 		// quantite à prélever
 		$p = $_POST['selectquantite'];
 		// retrouver l'id_article de la référence selectionnée
@@ -34,7 +36,7 @@ if(isset($_POST['ok'])) {
 			or die('Connexion au serveur impossible'. mysqli_error($connexion));
 		mysqli_select_db($connexion, $_SESSION['stockdb'])
 			or die('Selection de la base impossible' . mysqli_error($connexion));
-		$result=mysqli_query($connexion, "SELECT id_article FROM article WHERE reference='$nom'")
+		$result=mysqli_query($connexion, "SELECT id_article FROM article WHERE reference='$reference'")
 			or die('Requete SELECT impossible'. mysqli_error($connexion));
 		$row = mysqli_fetch_assoc($result);
 		$idarticle=$row['id_article'];				
