@@ -57,7 +57,7 @@ if(isset($_POST['ok'])) {
 				$requete .= ' AND NOT ';
 				$message .= "<li>Mais en excluant la destination :".$destination."</li>";
 			}
-			$requete .= " article.id_destination=".$id_destination.""; 
+			$requete .= " article.id_destination=".$id_destination." ORDER BY article.id_article"; 
 		}
 		$message .="</ul>";
 		//lancer la requete
