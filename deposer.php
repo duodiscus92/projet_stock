@@ -45,7 +45,7 @@ if(isset($_POST['ok'])) {
 		$dateha = date('Y-m-d H:i:s', strtotime($_POST['dateha']));
 		$createur = $_SESSION['id'];
 		//echo "créateur : '.$createur.'<br>";
-		mysqli_query($connexion, "INSERT INTO journal VALUES('', '$id_article', UPPER('$reference'), '$prixht', '$prixttc', '$quantité', '$dateha', NOW(), '$createur')")
+		mysqli_query($connexion, "INSERT INTO journal VALUES('', '$id_article', '$prixht', '$prixttc', '$quantité', '$dateha', NOW(), '$createur')")
 			or die('Requete INSERT impossible'. mysqli_error($connexion));
 		mysqli_close($connexion);
 		msgbox($info . $msgtab['ITEMSTORED'][$lang]);
