@@ -2,7 +2,7 @@
 session_start();
 if(isset($_POST['ok'])) {
 		$message="<p>Paramétrage du filtre :</p><ul><li>Tout le stock</li> ";
-		$requete="SELECT *,journal.date_creation AS jdcr FROM journal,article,categorie WHERE  journal.reference=article.reference AND article.id_categorie=categorie.id_categorie";
+		$requete="SELECT *,journal.date_creation AS jdcr , article.reference AS aref FROM journal,article,categorie WHERE  journal.id_article=article.id_article AND article.id_categorie=categorie.id_categorie";
 		//$requeteprixtotal="SELECT SUM(prixttc) AS prix_total FROM journal,article WHERE  journal.reference=article.reference";
 		//$requetequantitetotal="SELECT SUM(quantite) AS quantite_total FROM journal,article WHERE  journal.reference=article.reference";
 		// compléter la requete
@@ -10,7 +10,7 @@ if(isset($_POST['ok'])) {
 		$reference = $_POST['reference'];
 		if($etou != 'ignorer'){
 			if($etou == 'et'){
-				$requete .= " AND journal.reference='".$reference.""; 
+				$requete .= " AND article.reference='".$reference.""; 
 				$requete .= "'"; 
 				//$requeteprixtotal .= " AND journal.reference='".$reference.""; 
 				//$requeteprixtotal .= "'"; 
@@ -19,7 +19,7 @@ if(isset($_POST['ok'])) {
 				$message .= "<li>Mais uniquement dans la référence :".$reference."</li>"; 
 			}
 			else{
-				$requete .= " AND NOT journal.reference='".$reference.""; 
+				$requete .= " AND NOT article.reference='".$reference.""; 
 				$requete .= "'"; 
 				//$requeteprixtotal .= " AND NOT journal.reference='".$reference.""; 
 				//$requeteprixtotal .= "'"; 
@@ -108,7 +108,7 @@ if(isset($_POST['ok'])) {
 			$createur=$ligne['createur_mouvement'];
 			//$datecreation=$ligne['date_creation'];
 			$datecreation=$ligne['jdcr'];
-			$reference=$ligne['reference'];
+			$reference=$ligne['aref'];
 			$quantite=$ligne['quantite'];
 			$prixht=$ligne['prixht'];
 			$prixht_justif=sprintf("%10.2f", $prixht);
