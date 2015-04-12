@@ -65,7 +65,7 @@ if(isset($_POST['ok'])) {
 			or die('Requete SELECT impossible'. mysqli_error($connexion));
 		echo"<p><a href='refvide.php'>Retour au formulaire de consultation</a></br></p>";       		
 		$maintenant=date("d/m/Y \-\- H \h i");
-		echo "<p>Référence(s) vide(s) à la date du : ".$maintenant."</p>";
+		echo "<p>Référence(s) à la date du : ".$maintenant."</p>";
 		echo "<p>$message</p>";
 		echo "<table border width=80% cellpadding=6 >";
 		echo "<tr><td align='center'>ID</td><td align='left'>Catégorie</td><td align='left'>Destination</td>
