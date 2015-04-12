@@ -27,7 +27,7 @@ if(isset($_POST['ok'])){
 			// preparation de l'id
 			$refid = mysqli_real_escape_string($connexion, htmlspecialchars($_POST['refid']));
 			// verifier que l'article existe 
-			$result=mysqli_query($connexion, "SELECT *, article.reference AS reference FROM journal,article WHERE journal.id_mouvement LIKE '$refid'")
+			$result=mysqli_query($connexion, "SELECT * FROM journal,article WHERE journal.id_mouvement LIKE '$refid'")
 				or die('Requete SELECT impossible'. mysqli_error($connexion));
 			if($row = mysqli_fetch_assoc($result)){
 				$msg = "Vous allez supprimer l'article : ". $row['reference']."";
@@ -60,7 +60,7 @@ if(isset($_POST['ok'])){
 		// preparation de l'id
 		$refid = mysqli_real_escape_string($connexion, htmlspecialchars($_POST['refid']));
 		// verifier que l'article existe
-		$result=mysqli_query($connexion, "SELECT *, article.reference AS reference FROM journal,article WHERE journal.id_mouvement LIKE '$refid'")
+		$result=mysqli_query($connexion, "SELECT * FROM journal,article WHERE journal.id_mouvement LIKE '$refid'")
 			or die('Requete SELECT impossible'. mysqli_error($connexion));
 		if($row = mysqli_fetch_assoc($result)){
 			$msg = "Vous allez modifier l'article : ". $row['reference']."";
