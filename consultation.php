@@ -78,7 +78,7 @@ if(isset($_POST['ok'])) {
 				//$requetequantitetotal .= ' AND NOT'; 
 				$message .= "<li>Mais en excluant la destination :".$destination."</li>";
 			}
-			$requete .= " article.id_destination=".$id_destination."ORDER BY id_mouvement"; 
+			$requete .= " article.id_destination=".$id_destination."ORDER BY journal.id_mouvement"; 
 			//$requeteprixtotal .= " article.id_destination=".$id_destination.""; 
 			//$requetequantitetotal .= " article.id_destination=".$id_destination.""; 
 		}
