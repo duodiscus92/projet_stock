@@ -91,7 +91,7 @@ if(isset($_POST['ok'])) {
 						or die('Connexion au serveur impossible'. mysqli_error($connexion));
 					mysqli_select_db($connexion, $_SESSION['stockdb'])
 						or die('Selection de la base impossible' . mysqli_error($connexion));
-					$result=mysqli_query($connexion, "SELECT DISTINCT reference FROM journal ORDER BY reference")
+					$result=mysqli_query($connexion, "SELECT DISTINCT reference FROM journal,article WHERE journal.id_article=article.id_article ORDER BY reference")
 						or die('Requete SELECT impossible'. mysqli_error($connexion));
 					//mysqli_close($connexion);        	
 					while($ligne=mysqli_fetch_assoc($result)) {
