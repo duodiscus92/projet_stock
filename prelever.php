@@ -108,12 +108,21 @@ if(isset($_POST['ok'])) {
 				// est-ce qu'on a selectionné une reference ?
 			    if(isset($iddest) && $iddest != -1) {
 					$nom=$_POST['reference'];
+					// recherche de l'ID de la référence sélectionnée
+					$connexion=mysqli_connect("localhost", $_SESSION['stocklogin'], $_SESSION['stockpwd'])
+						or die('Connexion au serveur impossible'. mysqli_error($connexion));
+					mysqli_select_db($connexion, $_SESSION['stockdb'])
+						or die('Selection de la base impossible' . mysqli_error($connexion));
+					$result=mysqli_query($connexion, "SELECT id_article FROM article WHERE reference='$nom'")
+						or die('Requete SELECT impossible'. mysqli_error($connexion));
+					$row = mysqli_fetch_assoc($result);
+					$idarticle=$row['id_article'];				
 					// recherche de la quantité disponible dans la reference selectionnée
 					$connexion=mysqli_connect("localhost", $_SESSION['stocklogin'], $_SESSION['stockpwd'])
 						or die('Connexion au serveur impossible'. mysqli_error($connexion));
 					mysqli_select_db($connexion, $_SESSION['stockdb'])
 						or die('Selection de la base impossible' . mysqli_error($connexion));
-					$result=mysqli_query($connexion, "SELECT SUM(quantite) AS quantite_totale FROM journal WHERE reference='$nom'")
+					$result=mysqli_query($connexion, "SELECT SUM(quantite) AS quantite_totale FROM journal WHERE id_article='$idarticle'")
 						or die('Requete SELECT impossible'. mysqli_error($connexion));
 					$row = mysqli_fetch_assoc($result);
 					$quantite_totale=$row['quantite_totale'];
