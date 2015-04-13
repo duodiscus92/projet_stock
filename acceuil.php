@@ -15,7 +15,7 @@
 			src = "jquery-ui-1.7.2.custom.min.js"></script>
 		<script type = "text/javascript">
 		  //<![CDATA[
-		  function verifStatut(statut_requis){
+		  function verif_mode_statut(statut_requis){
 			var monStatut = <?php echo $_SESSION["statut"]; ?>;
 			//var mode = <?php echo $_SESSION["modesystem"]; ?>;
 			//alert("Mode : "+mode );
@@ -43,24 +43,24 @@
 		?>
 	    <p>
 	    	<h2>Opérations sur le stock</h2>
-	        <a href="consulter.php" onClick="verifStatut(2);">Consulter l'état du stock</a><br />
-	        <a href="deposer.php" onClick="verifStatut(3);">Déposer dans le stock</a><br />
-	        <a href="prelever.php" onClick="verifStatut(3);">Prélever dans le stock</a><br />
-	        <a href="delart.php" onClick="verifStatut(3);">Supprimer ou modifier un article</a><br />
+	        <a href="consulter.php" onClick="verif_mode_statut(2);">Consulter l'état du stock</a><br />
+	        <a href="deposer.php" onClick="verif_mode_statut(3);">Déposer dans le stock</a><br />
+	        <a href="prelever.php" onClick="verif_mode_statut(3);">Prélever dans le stock</a><br />
+	        <a href="delart.php" onClick="verif_mode_statut(3);">Supprimer ou modifier un article</a><br />
 	    	<h2>Opérations sur les références</h2>
-	        <a href="refvide.php" onClick="verifStatut(2);">Consulter les références</a><br />
-	        <a href="creerref.php" onClick="verifStatut(4);">Créer une nouvelle réference</a><br />
-	        <a href="delref.php" onClick="verifStatut(4);">Supprimer ou modifier une réference</a><br />
+	        <a href="refvide.php" onClick="verif_mode_statut(2);">Consulter les références</a><br />
+	        <a href="creerref.php" onClick="verif_mode_statut(4);">Créer une nouvelle réference</a><br />
+	        <a href="delref.php" onClick="verif_mode_statut(4);">Supprimer ou modifier une réference</a><br />
 			<h2>Opération sur mes propres paramètres</h2>
-   	        <a href="chpwd.php" onClick="verifStatut(1);">Modifier mon mot de passe</a><br />
-   	        <a href="acceuil.php" onClick="verifStatut(2);">Régler mes notifications (pas encore en service)</a><br />
+   	        <a href="chpwd.php" onClick="verif_mode_statut(1);">Modifier mon mot de passe</a><br />
+   	        <a href="acceuil.php" onClick="verif_mode_statut(2);">Régler mes notifications (pas encore en service)</a><br />
 	        <h2>Divers</h2>
-	        <a href="notice.php" onClick="verifStatut(2);">Consulter la notice d'utilisation</a><br />
+	        <a href="notice.php" onClick="verif_mode_statut(2);">Consulter la notice d'utilisation</a><br />
 	        <a href="logout.php">Quitter (fermer la session)</a>        
 	        <h2>Opérations spéciales </h2>
-	        <a href="parametrer.php" onClick="verifStatut(4);">Paramétrer le stock</a><br />
-	        <a href="chstatut.php" onClick="verifStatut(5);">Changer le statut des utilisateurs</a><br />
-	        <a href="maintenance.php" onClick="verifStatut(5);">Mettre le système en maintenance ou en production</a><br />
+	        <a href="parametrer.php" onClick="verif_mode_statut(4);">Paramétrer le stock</a><br />
+	        <a href="chstatut.php" onClick="verif_mode_statut(5);">Changer le statut des utilisateurs</a><br />
+	        <a href="maintenance.php" onClick="verif_mode_statut(5);">Mettre le système en maintenance ou en production</a><br />
 	    </p> 
     </body>
 </html>
