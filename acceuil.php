@@ -15,16 +15,16 @@
 			src = "jquery-ui-1.7.2.custom.min.js"></script>
 		<script type = "text/javascript">
 		  //<![CDATA[
-		  function verif_mode_statut(statut_requis,verifmode){
+		  function verif_mode_statut(statut_requis){
 			var monStatut = <?php echo $_SESSION["statut"]; ?>;
-			var mode = <?php echo $_SESSION["modesystem"]; ?>;
+			//var mode = <?php echo $_SESSION["modesystem"]; ?>;
 			//alert("Mode : "+mode );
-			if(verifmode == 1){
-				if(mode == 'TEST'){
-					alert("Systeme en maintenance : ré-essayez ultérieurement");
-					<?php header ("Refresh: 5;URL=acceuil.php"); ?>
-				}
-			}
+			//if(verifmode == 1){
+			//	if(mode == 'TEST'){
+			//		alert("Systeme en maintenance : ré-essayez ultérieurement");
+			//		<?php header ("Refresh: 5;URL=acceuil.php"); ?>
+			//	}
+			//}
 			if(monStatut < statut_requis){
 				alert("Votre statut ne vous autorise pas cette opération !");
 				<?php header ("Refresh: 5;URL=acceuil.php"); ?>
