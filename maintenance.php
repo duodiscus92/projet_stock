@@ -20,14 +20,16 @@ if(isset($_POST['ok'])) {
 		mysqli_select_db($connexion, $stockindexdbname)
 			or die('Selection de la base impossible' . mysqli_error($connexion));
 		if(($_POST['toup']) == 'test'){
-			$_SESSION['modesystem'] = "TEST";
+			$_SESSION['modesystem'] = 0;
+			$_SESSION['litteralmodesystem']='MAINTENANCE';
 			// inscrire le mode de fonctionnement dans la table
 			$result=mysqli_query($connexion, "UPDATE modesystem SET operatingmode='TEST' WHERE id_modesystem=0")
 				or die('Requete SELECT impossible'. mysqli_error($connexion));	
 			msgbox($info."Le système a été mis en maintenance");
 		}
 		else if (($_POST['toup']) == 'prod'){
-			$_SESSION['modesystem'] = "PROD";
+			$_SESSION['modesystem'] = 1;
+			$_SESSION['litteralmodesystem']='PRODUCTION';
 			// inscrire le mode de fonctionnement dans la table
 			$result=mysqli_query($connexion, "UPDATE modesystem SET operatingmode='PROD' WHERE id_modesystem=0")
 				or die('Requete SELECT impossible'. mysqli_error($connexion));	
@@ -53,7 +55,7 @@ if(isset($_POST['ok'])) {
     	<?php
 			echo '<h1>Mettre le système en maintenance ou en production : '.$_SESSION['stockname']. '</h1>';
 			echo '<p> Session de : ' .$_SESSION['id']. ' ---  Statut : '.$_SESSION['type_statut']. '</p>';
-			echo '<p> Système actuellement en : '.$_SESSION['modesystem']. '</p>';
+			echo '<p> Système actuellement en : '.$_SESSION['litteralmodesystem']. '</p>';
 		?>
         <a href="acceuil.php">Retour au menu principal</a><br />
         <h2>Veuillez sélectionner le mode de fonctionnement</h2>
