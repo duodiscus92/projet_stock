@@ -63,7 +63,7 @@ if(!empty($_POST['id']) && !empty($_POST['nom']) && !empty($_POST['prenom']) && 
 		$prenom = mysqli_real_escape_string($connexion, htmlspecialchars($_POST['prenom']));
 //		$login = mysqli_real_escape_string($connexion, htmlspecialchars($_POST['id']));
 		$mail = mysqli_real_escape_string($connexion, htmlspecialchars($_POST['mail']));
-		mysqli_query($connexion, "INSERT INTO utilisateurs VALUES('', '$nom', '$prenom', '$login', '$mdp1', '$mail', 1, NOW())")
+		mysqli_query($connexion, "INSERT INTO utilisateurs VALUES('', '$nom', '$prenom', '$login', '$mdp1', '$mail', 1, NOW(),0,0,0,0)")
 			or die('Requete INSERT impossible'. mysqli_error($connexion));
 		echo "Inscription en cours, veuillez patienter ...<br>";
 		sendmail($_SESSION['mailroot'], "[cvvfr-stock]Nouvel utilisateur", "Nom : $nom Prénom : $prenom Login : $login email : $mail."); 
