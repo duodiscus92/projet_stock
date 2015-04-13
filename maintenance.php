@@ -1,5 +1,7 @@
 ﻿<?php
 //session_start();
+	include('stocklib.php');
+	include('stock.conf.php');
 	require('control_session.php');
 	if($_SESSION['statut'] <5){
 		echo("<h2>Votre statut ne vous autorise pas mettre le système en/hors maintenance/h2>");
@@ -11,16 +13,29 @@
 <?php
 if(isset($_POST['ok'])) {
 	if(!empty($_POST['toup'])){
+		// recuperer le mode de fonctionnement 
+		// connexion à la base index	
+		$connexion=mysqli_connect("localhost", $stockindexlogin, $stockindexpwd)
+			or die('Connexion au serveur impossible'. mysqli_error($connexion));
+		mysqli_select_db($connexion, $stockindexdbname)
+			or die('Selection de la base impossible' . mysqli_error($connexion));
 		if(($_POST['toup']) == 'test'){
 			$_SESSION['modesystem'] = "TEST";
+			// inscrire le mode de fonctionnement dans la table
+			$result=mysqli_query($connexion, "UPDATE modesystem SET operatingmode='TEST' WHERE id_modesystem=0")
+				or die('Requete SELECT impossible'. mysqli_error($connexion));	
 			msgbox($info."Le système a été mis en maintenance");
 		}
 		else if (($_POST['toup']) == 'prod'){
 			$_SESSION['modesystem'] = "PROD";
-			msgbox($info."Le système a étémis en production");
+			// inscrire le mode de fonctionnement dans la table
+			$result=mysqli_query($connexion, "UPDATE modesystem SET operatingmode='PROD' WHERE id_modesystem=0")
+				or die('Requete SELECT impossible'. mysqli_error($connexion));	
+			msgbox($info."Le système a été mis en production");
 		}
 		else
 			msgbox($info. "Le mode n\'a pas été changé");
+		mysqli_close($connexion);
 	}
 }
 
@@ -36,7 +51,7 @@ if(isset($_POST['ok'])) {
     </head>
     <body>      
     	<?php
-			echo '<h1>Mettre le système en maitenance ou en production : '.$_SESSION['stockname']. '</h1>';
+			echo '<h1>Mettre le système en maintenance ou en production : '.$_SESSION['stockname']. '</h1>';
 			echo '<p> Session de : ' .$_SESSION['id']. ' ---  Statut : '.$_SESSION['type_statut']. '</p>';
 			echo '<p> Système actuellement en : '.$_SESSION['modesystem']. '</p>';
 		?>
