@@ -27,6 +27,7 @@
 				<?php header ("Refresh: 5;URL=acceuil.php"); ?>
 				//exit();
 			}
+			return true;
 	      }
 	      //]]>
 	     </script>
@@ -38,7 +39,7 @@
 		?>
 	    <p>
 	    	<h2>Opérations sur le stock</h2>
-	        <a href="consulter.php" onClick="verifStatut(2,1)">Consulter l'état du stock</a><br />
+	        <a href="consulter.php" onClick="return verifStatut(2,1)">Consulter l'état du stock</a><br />
 	        <a href="deposer.php" onClick="verifStatut(3,1)">Déposer dans le stock</a><br />
 	        <a href="prelever.php" onClick="verifStatut(3,1)">Prélever dans le stock</a><br />
 	        <a href="delart.php" onClick="verifStatut(3,1)">Supprimer ou modifier un article</a><br />
