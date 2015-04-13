@@ -1,8 +1,8 @@
-<?php
+ï»¿<?php
 //session_start();
 	require('control_session.php');
 	if($_SESSION['statut'] <5){
-		echo("<h2>Votre statut ne vous autorise pas mettre le système en/hors maintenance/h2>");
+		echo("<h2>Votre statut ne vous autorise pas mettre le systÃ¨me en/hors maintenance/h2>");
 		header ("Refresh: 3;URL=acceuil.php");
 		exit();
 }
@@ -10,17 +10,17 @@
 
 <?php
 if(isset($_POST['ok'])) {
-	if(!empty($_POST['moup'])){
-		if(($_POST['moup']) == 'maint'){
-			$_SESSION['modesystem'] = "m";
-			msgbox($info."Le système a été mis en maintenance");
+	if(!empty($_POST['toup'])){
+		if(($_POST['toup']) == 'test'){
+			$_SESSION['modesystem'] = "TEST";
+			msgbox($info."Le systÃ¨me a Ã©tÃ© mis en maintenance");
 		}
-		else if (($_POST['moup']) == 'prod'){
-			$_SESSION['modesystem'] = "p";
-			msgbox($info."Le système a été mis en production");
+		else if (($_POST['toup']) == 'prod'){
+			$_SESSION['modesystem'] = "PROD";
+			msgbox($info."Le systÃ¨me a Ã©tÃ©mis en production");
 		}
 		else
-			msgbox($info. "Le mode n\'a pas été changé");
+			msgbox($info. "Le mode n\'a pas Ã©tÃ© changÃ©");
 	}
 }
 
@@ -36,18 +36,18 @@ if(isset($_POST['ok'])) {
     </head>
     <body>      
     	<?php
-			echo '<h1>Mettre le système en maitenance ou en production : '.$_SESSION['stockname']. '</h1>';
+			echo '<h1>Mettre le systÃ¨me en maitenance ou en production : '.$_SESSION['stockname']. '</h1>';
 			echo '<p> Session de : ' .$_SESSION['id']. ' ---  Statut : '.$_SESSION['type_statut']. '</p>';
-			echo '<p> Système actuellement en : '.$_SESSION['modesystem']. '</p>';
+			echo '<p> SystÃ¨me actuellement en : '.$_SESSION['modesystem']. '</p>';
 		?>
         <a href="acceuil.php">Retour au menu principal</a><br />
-        <h2>Veuillez sélectionner le mode de fonctionnement</h2>
+        <h2>Veuillez sÃ©lectionner le mode de fonctionnement</h2>
 	    <form action="<?php echo($_SERVER['PHP_SELF']); ?>" method="post" id="chg">
 			<fieldset>
-				<label for="moup">Mode :</label>
-				<input type="radio" name="moup" value="maint"  >Maintenance
-				<input type="radio" name="moup" value="prod" >Production
-				<input type="radio" name="moup" value="ignorer" checked="checked">Conserver le mode en cours</br>
+				<label for="toup">Mode :</label>
+				<input type="radio" name="toup" value="test"  >Maintenance
+				<input type="radio" name="toup" value="prod" >Production
+				<input type="radio" name="toup" value="ignorer" checked="checked">Conserver le mode en cours</br>
 			</fieldset>
  	        <label for="bouton">Validation :</label>
             <input type="submit" name="ok" id="ok" value="Valider le changement de mode" ></td>
