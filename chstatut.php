@@ -1,8 +1,8 @@
-<?php
+﻿<?php
 //session_start();
 	require('control_session.php');
 	if($_SESSION['statut'] <5 || $_SESSION['modesystem']==0){
-		echo("<h2>Non autoris� : en maintenance ou statut insuffisant</h2>");
+		echo("<h2>Non autorisé : en maintenance ou statut insuffisant</h2>");
 		header ("Refresh: 3;URL=acceuil.php");
 		exit();
 	}
