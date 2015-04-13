@@ -15,6 +15,7 @@
 	      function verifStatut(statut_requis, verifmode){
 		    var monStatut = <?php echo $_SESSION["statut"]; ?>;
 			var mode = <?php echo $_SESSION["modesystem"]; ?>;
+			alert("Mode : "+mode );
 			if(verifmode == 1){
 				if(mode == 'TEST'){
 					alert("Systeme en maintenance : ré-essayez ultérieurement");
