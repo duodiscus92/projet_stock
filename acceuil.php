@@ -15,12 +15,12 @@
 			src = "jquery-ui-1.7.2.custom.min.js"></script>
 		<script type = "text/javascript">
 		  //<![CDATA[
-		  function verif_mode_statut(statut_requis){
+		  function verif_mode_statut(statut_requis,verif_mode){
 			var monStatut = <?php echo $_SESSION["statut"]; ?>;
-			//var mode = <?php echo $_SESSION["modesystem"]; ?>;
+			var monMode = <?php echo $_SESSION["modesystem"]; ?>;
 			//alert("Mode : "+mode );
-			//if(verifmode == 1){
-			//	if(mode == 'TEST'){
+			//if(verif_mode == 1){
+			//	if(monMode == 'TEST'){
 			//		alert("Systeme en maintenance : ré-essayez ultérieurement");
 			//		<?php header ("Refresh: 5;URL=acceuil.php"); ?>
 			//	}
