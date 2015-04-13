@@ -1,10 +1,10 @@
 ﻿<?php
 	require('control_session.php');
-	if($_SESSION['statut'] <1){
-		echo("<h2>Votre statut ne vous autorise pas à changer le mot de passe/h2>");
+	if($_SESSION['statut'] <1 || $_SESSION['modesystem']==0){
+		echo("<h2>Non autorisé : en maintenance ou statut insuffisant</h2>");
 		header ("Refresh: 3;URL=acceuil.php");
 		exit();
-}
+	}
 ?>
 <?php
 // le traitement du formulaire ci-dessous est ici

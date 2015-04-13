@@ -5,7 +5,7 @@
 		echo("<h2>Non autorisé : en maintenance ou statut insuffisant</h2>");
 		header ("Refresh: 3;URL=acceuil.php");
 		exit();
-}
+	}
 ?>
 <!DOCTYPE html PUBLIC 
 "-//W3C//DTD XHTML 1.0 Strict//EN" 

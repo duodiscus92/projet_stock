@@ -1,11 +1,11 @@
 <?php
 //session_start();
 	require('control_session.php');
-	if($_SESSION['statut'] <5){
-		echo("<h2>Votre statut ne vous autorise pas à changer le statut des utilisateurs/h2>");
+	if($_SESSION['statut'] <5 || $_SESSION['modesystem']==0){
+		echo("<h2>Non autorisé : en maintenance ou statut insuffisant</h2>");
 		header ("Refresh: 3;URL=acceuil.php");
 		exit();
-}
+	}
 ?>
 <?php
 	echo("<?xml version=\"1.0\" encoding=\"iso-8859-1\"?>\n");
