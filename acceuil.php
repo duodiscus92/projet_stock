@@ -19,12 +19,12 @@
 			var monStatut = <?php echo $_SESSION["statut"]; ?>;
 			var monMode = <?php echo $_SESSION['modesystem']; ?>;
 			//alert("Mode : "+mode );
-			//if(verif_mode == 1){
-			//	if(monMode == 'TEST'){
-			//		alert("Systeme en maintenance : ré-essayez ultérieurement");
-			//		<?php header ("Refresh: 5;URL=acceuil.php"); ?>
-			//	}
-			//}
+			if(verif_mode == 1){
+				if(monMode == 0){
+					alert("Systeme en maintenance : ré-essayez ultérieurement");
+					<?php header ("Refresh: 5;URL=acceuil.php"); ?>
+				}
+			}
 			if(monStatut < statut_requis){
 				alert("Votre statut ne vous autorise pas cette opération !");
 				<?php header ("Refresh: 5;URL=acceuil.php"); ?>
