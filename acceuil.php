@@ -17,7 +17,7 @@
 		  //<![CDATA[
 		  function verif_mode_statut(statut_requis,verif_mode){
 			var monStatut = <?php echo $_SESSION["statut"]; ?>;
-			var monMode = <?php echo $_SESSION["modesystem"]; ?>;
+			//var monMode = <?php echo $_SESSION["modesystem"]; ?>;
 			//alert("Mode : "+mode );
 			//if(verif_mode == 1){
 			//	if(monMode == 'TEST'){
