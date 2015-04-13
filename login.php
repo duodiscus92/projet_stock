@@ -63,8 +63,13 @@ if(!empty($_POST['id']) && !empty($_POST['mdp']) && !empty($_POST['stockname']) 
 		// selectionner le mode de fonctionnement dans la table
 		$result=mysqli_query($connexion, "SELECT operatingmode FROM modesystem WHERE id_modesystem=0")
 			or die('Requete SELECT impossible'. mysqli_error($connexion));	
-		if($row = mysqli_fetch_assoc($result))	
-			$_SESSION['modesystem']=$row['operatingmode'];
+		if($row = mysqli_fetch_assoc($result)) {
+			//parceque je n'arrive pas à traiter les chaines dans le javascript de acceuil.php 
+			if($row['operatingmode'] == "TEST")	
+				$_SESSION['modesystem']=0;
+			else
+				$_SESSION['modesystem']=1;
+		}
 		mysqli_close($connexion);
 		header ("Refresh: 1;URL=acceuil.php");
 		exit();
