@@ -18,7 +18,7 @@
 		  function verifStatut(statut_requis){
 			var monStatut = <?php echo $_SESSION["statut"]; ?>;
 			//var mode = <?php echo $_SESSION["modesystem"]; ?>;
-			alert("Mode : "+mode );
+			//alert("Mode : "+mode );
 			//if(verifmode == 1){
 			//	if(mode == 'TEST'){
 			//		alert("Systeme en maintenance : ré-essayez ultérieurement");
@@ -43,7 +43,7 @@
 		?>
 	    <p>
 	    	<h2>Opérations sur le stock</h2>
-	        <a href="consulter.php" onClick="return verifStatut(2);">Consulter l'état du stock</a><br />
+	        <a href="consulter.php" onClick="verifStatut(2);">Consulter l'état du stock</a><br />
 	        <a href="deposer.php" onClick="verifStatut(3);">Déposer dans le stock</a><br />
 	        <a href="prelever.php" onClick="verifStatut(3);">Prélever dans le stock</a><br />
 	        <a href="delart.php" onClick="verifStatut(3);">Supprimer ou modifier un article</a><br />
