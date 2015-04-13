@@ -10,27 +10,6 @@
         <meta charset="utf-8" />
         <link rel="stylesheet" href="style.css" />
         <title>Acceuil</title>
-	    <script type = "text/javascript">
-	      //<![CDATA[
-	      function verifStatut(statut_requis, verifmode){
-		    var monStatut = <?php echo $_SESSION["statut"]; ?>;
-			var mode = <?php echo $_SESSION["modesystem"]; ?>;
-			alert("Mode : "+mode );
-			if(verifmode == 1){
-				if(mode == 'TEST'){
-					alert("Systeme en maintenance : ré-essayez ultérieurement");
-					<?php header ("Refresh: 5;URL=acceuil.php"); ?>
-				}
-			}
-			if(monStatut < statut_requis){
-				alert("Votre statut ne vous autorise pas cette opération !");
-				<?php header ("Refresh: 5;URL=acceuil.php"); ?>
-				//exit();
-			}
-			return true;
-	      }
-	      //]]>
-	     </script>
     </head>
     <body>
     	<?php
@@ -57,6 +36,27 @@
 	        <a href="parametrer.php" onClick="verifStatut(4,1)">Paramétrer le stock</a><br />
 	        <a href="chstatut.php" onClick="verifStatut(5,1)">Changer le statut des utilisateurs</a><br />
 	        <a href="maintenance.php" onClick="verifStatut(5,0)">Mettre le système en maintenance ou en production</a><br />
+			<script type = "text/javascript">
+			  //<![CDATA[
+			  function verifStatut(statut_requis, verifmode){
+				var monStatut = <?php echo $_SESSION["statut"]; ?>;
+				var mode = <?php echo $_SESSION["modesystem"]; ?>;
+				alert("Mode : "+mode );
+				if(verifmode == 1){
+					if(mode == 'TEST'){
+						alert("Systeme en maintenance : ré-essayez ultérieurement");
+						<?php header ("Refresh: 5;URL=acceuil.php"); ?>
+					}
+				}
+				if(monStatut < statut_requis){
+					alert("Votre statut ne vous autorise pas cette opération !");
+					<?php header ("Refresh: 5;URL=acceuil.php"); ?>
+					//exit();
+				}
+				return true;
+			  }
+			  //]]>
+			 </script>
 	    </p> 
     </body>
 </html>
